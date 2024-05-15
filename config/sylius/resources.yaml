@@ -1,0 +1,5 @@
+sylius_resource:
+    resources:
+        app.article:
+            classes:
+                model: App\Entity\Article\Article

@@ -1,0 +1,13 @@
+<div class="ui two column stackable grid">
+    {{ form_errors(form) }}
+    <div class="column">
+        <div class="ui segment">
+            <h4 class="ui dividing header">{{ 'app.ui.article_details'|trans }}</h4>
+            <div class="two fields">
+                {{ form_row(form.title) }}
+                {{ form_row(form.text) }}
+
+            </div>
+        </div>
+    </div>
+</div>

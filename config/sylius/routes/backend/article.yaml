@@ -1,0 +1,25 @@
+sylius_backend_article:
+    resource: |
+        section: backend
+        alias: app.article
+        templates: 'backend/crud'
+        except: ['show']
+        grid: app_backend_article
+        redirect: index
+        vars:
+            all:
+                subheader: sylius.ui.manage_your_customers
+                templates:
+                    form: backend/article/_form.html.twig
+            index:
+                icon: users
+    type: sylius.resource
+
+app_backend_article_show:
+    path: /articles/{id}
+    defaults:
+        _controller: app.controller.article::showAction
+        _sylius:
+            section: backend
+            template: backend/article/show.html.twig
+            permission: true

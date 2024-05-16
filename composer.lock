@@ -8933,27 +8933,25 @@
         },
         {
             "name": "symfony/templating",
-            "version": "v6.2.7",
+            "version": "v6.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/templating.git",
-                "reference": "25662be9cec98a2486487eca230a081ffa1a7832"
+                "reference": "1c11fb09294f0aa61587228122d42522c420acb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/templating/zipball/25662be9cec98a2486487eca230a081ffa1a7832",
-                "reference": "25662be9cec98a2486487eca230a081ffa1a7832",
+                "url": "https://api.github.com/repos/symfony/templating/zipball/1c11fb09294f0aa61587228122d42522c420acb6",
+                "reference": "1c11fb09294f0aa61587228122d42522c420acb6",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
+                "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/polyfill-ctype": "~1.8"
             },
             "require-dev": {
                 "psr/log": "^1|^2|^3"
-            },
-            "suggest": {
-                "psr/log-implementation": "For using debug logging in loaders"
             },
             "type": "library",
             "autoload": {
@@ -8981,7 +8979,7 @@
             "description": "Provides all the tools needed to build any kind of template system",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/templating/tree/v6.2.7"
+                "source": "https://github.com/symfony/templating/tree/v6.4.7"
             },
             "funding": [
                 {
@@ -8997,7 +8995,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-14T08:44:56+00:00"
+            "time": "2024-04-18T09:22:46+00:00"
         },
         {
             "name": "symfony/translation",

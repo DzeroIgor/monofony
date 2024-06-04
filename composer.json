@@ -74,7 +74,7 @@
         "phpstan/phpstan-webmozart-assert": "^1.1",
         "psr/event-dispatcher": "^1.0",
         "robertfausk/behat-panther-extension": "^1.1",
-        "se/selenium-server-standalone": "2.*",
+        "se/selenium-server-standalone": "3.*",
         "symfony/debug-bundle": "^6.1",
         "symfony/phpunit-bridge": "6.2.*",
         "symfony/web-profiler-bundle": "^6.1",

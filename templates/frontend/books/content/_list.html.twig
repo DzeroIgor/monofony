@@ -1,0 +1,25 @@
+{% if books|length == 4 %}
+    {% set columns = "two" %}
+{% endif %}
+{% if books|length == 3 %}
+    {% set columns = "three odd doubling" %}
+{% endif %}
+
+<div class="ui container {{ columns|default('') }} cards">
+    {% for book in books %}
+        <div class="ui fluid card" >
+            <a href="{{ path('app_frontend_book_show', {'id': book.id }) }}" class="blurring dimmable image">
+                <div class="ui dimmer">
+                    <div class="content">
+                        <div class="center">
+                            <div class="ui inverted button">{{ 'sylius.ui.view_more'|trans }}</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="content" >
+                <a href="{{ path('app_frontend_book_show', {'id': book.id }) }}" class="header sylius-product-name">{{ book.title }}</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>

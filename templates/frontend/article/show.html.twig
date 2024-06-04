@@ -1,0 +1,55 @@
+{% extends 'frontend/layout.html.twig' %}
+
+{% if article is not defined %}
+    {% set article = resource.post %}
+{% endif %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+    <h4 class="ui dividing header container">{{ 'app.ui.article_details'|trans }}</h4>
+
+    <div class="ui container">
+        <div class="ui header">
+            {{ article.title }}
+        </div>
+        <div>
+            {{ article.text }}
+        </div>
+
+        <a href="{{ path('app_frontend_article_add_comment', {'postId': article.id}) }}" class=" ui button">Add a Comment</a>
+
+        <h1>{{ 'app.ui.comments'|trans }}</h1> <br>
+
+            <div class="ui comments">
+                {% for comment in article.comments %}
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="http://127.0.0.1:8000/media/cache/app_backend_admin_user_avatar_thumbnail/media/avatar/664d912680d05_84.jpg" class="ui circular image">
+                        </a>
+                        <div class="content">
+                            <a class="author">{{ comment.author.fullName }} </a>
+                            <div class="metadata">
+                            </div>
+                            <div class="text">
+                                    {{ comment.comment }} {% if comment.author %}{% endif %}<br>
+                            </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+{#            {% for comment in article.comments %}#}
+{#                {{ comment.comment }} {% if comment.author %} <b>- by {{ comment.author.fullName }}</b> {% endif %}<br>#}
+{#            {% endfor %}#}
+
+
+        <br>
+        {% if form is defined %}
+            {{ include('frontend/comment/_form.html.twig') }}
+        {% endif %}
+    </div>
+
+{% endblock %}

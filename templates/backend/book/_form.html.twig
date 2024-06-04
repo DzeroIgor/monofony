@@ -1,0 +1,22 @@
+{% from 'backend/macros/translatiosForm.html.twig' import translationForm %}
+
+<div class="ui two column stackable grid">
+    {{ form_errors(form) }}
+    <div class="column">
+        <div class="ui segment">
+            <h4 class="ui dividing header">{{ 'app.ui.book_details'|trans }}</h4>
+            {{ translationForm(form.translations) }}
+
+            {{ form_row(form.author) }}
+            {{ form_row(form.publishingHouse) }}
+            {{ form_row(form.age) }}
+            {{ form_row(form.literatureCategory) }}
+            {{ form_row(form.isbn) }}
+            {{ form_row(form.price) }}
+            {{ form_row(form.currency) }}
+            {{ form_row(form.publishedAt) }}
+            {{ form_row(form.cover) }}
+        </div>
+
+    </div>
+</div>

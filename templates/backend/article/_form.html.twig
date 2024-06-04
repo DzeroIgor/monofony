@@ -3,11 +3,9 @@
     <div class="column">
         <div class="ui segment">
             <h4 class="ui dividing header">{{ 'app.ui.article_details'|trans }}</h4>
-            <div class="two fields">
-                {{ form_row(form.title) }}
-                {{ form_row(form.text) }}
-
-            </div>
+            {{ form_row(form.title) }}
+            {{ form_row(form.text) }}
+            {{ form_row(form.comments) }}
         </div>
     </div>
 </div>

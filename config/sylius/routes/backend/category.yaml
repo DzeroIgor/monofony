@@ -1,0 +1,26 @@
+sylius_backend_article:
+    resource: |
+        section: backend
+        alias: app.category
+        templates: 'backend/crud'
+        except: ['show']
+        grid: app_backend_category
+        redirect: index
+        vars:
+            all:
+                subheader: app.ui.manage_your_categories
+                templates:
+                    form: backend/category/_form.html.twig
+            index:
+                icon: book
+    type: sylius.resource
+
+app_backend_category_show:
+    path: /category/{id}
+    defaults:
+        _controller: app.controller.category::showAction
+        _sylius:
+            section: backend
+            template: backend/book/show.html.twig
+            permission: true
+

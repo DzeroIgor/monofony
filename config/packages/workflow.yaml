@@ -1,0 +1,25 @@
+framework:
+    workflows:
+        app_vehicle:
+            type: 'state_machine'
+            marking_store:
+                type: 'method'
+                property: 'state'
+            supports:
+                - App\Entity\Vehicle\Vehicle
+            initial_marking: new
+            places:
+                - new
+                - used
+                - salvage
+                - totaled
+            transitions:
+                buy:
+                    from: [new, used]
+                    to: used
+                crash:
+                    from: [new, used, salvage]
+                    to: totaled
+                repair:
+                    from: totaled
+                    to: salvage

@@ -35,6 +35,11 @@ sylius_customer:
                 model: App\Entity\Customer\Customer
                 repository: App\Repository\CustomerRepository
 
+sylius_locale:
+    locale: 'en'
+
+sylius_currency: ~
+
 sylius_mailer:
     sender:
         name: '%email_name%'

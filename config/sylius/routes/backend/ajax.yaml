@@ -1,0 +1,3 @@
+sylius_backend_ajax_category:
+    resource: ajax/category.yaml
+    prefix: /categories

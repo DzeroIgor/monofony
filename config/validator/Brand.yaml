@@ -1,0 +1,6 @@
+App\Entity\Vehicle\Brand:
+  properties:
+    name:
+      - NotBlank: { groups: [user] }
+    models:
+      - Count: { min: 1, groups: [admin], minMessage: 'You must specify at least one model'}

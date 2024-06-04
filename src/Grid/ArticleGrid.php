@@ -6,6 +6,7 @@ namespace App\Grid;
 
 use App\Entity\Article\Article;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
+use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
 use Sylius\Bundle\GridBundle\Builder\Action\ShowAction;
 use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
@@ -47,6 +48,7 @@ final class ArticleGrid extends AbstractGrid implements ResourceAwareGridInterfa
                 ItemActionGroup::create(
                     ShowAction::create(),
                     UpdateAction::create(),
+                    DeleteAction::create()
                 )
             )
         ;

@@ -23,4 +23,6 @@ final class DashboardController
 
         return new Response($content);
     }
+
+
 }

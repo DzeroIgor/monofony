@@ -1,0 +1,46 @@
+App\Entity\Vehicle\Vehicle:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+              #        groups: [admin, user]
+              fields: [ vin ]
+              message: 'This vin is already in use on that database.'
+    properties:
+        model:
+            - NotBlank: { groups: [admin, user] }
+            - Length: { min: 3, groups: [ admin, user ] }
+        category:
+            - NotBlank: { groups: [admin, user] }
+        vin:
+            - NotBlank: { groups: [admin, user] }
+            - Length: {min: 17, max: 17, groups: [admin, user], minMessage: 'You must input 17 characters!' }
+        year:
+            - NotBlank: { groups: [admin] }
+            - Date: ~
+        weight:
+            - NotBlank: { groups: [admin] }
+            - Positive: ~
+        engineVolume:
+            - NotBlank: { groups: [admin] }
+            - Range:
+                min: 0.49
+                max: 24
+                notInRangeMessage: You must b e between {{ min }}cm and {{ max }}cm tall to enter
+                groups: [admin, user]
+        engineNumber:
+            - NotBlank: { groups: [admin] }
+            - Length: {min: 11, max: 17, groups: [admin, user] }
+        engineType:
+            - NotBlank: { groups: [admin] }
+        numberOfPlaces:
+            - NotBlank: { groups: [admin] }
+        chassisNumber:
+            - NotBlank: { groups: [admin] }
+            - Length: { min: 17, max: 17, groups: [ admin, user ] }
+        bodyType:
+            - NotBlank: { groups: [admin] }
+        color:
+            - NotBlank: { groups: [admin] }
+        state:
+            - NotBlank: { groups: [admin] }
+        hasAccident:
+

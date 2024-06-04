@@ -1,0 +1,30 @@
+app_frontend_article_show:
+    path: /article/{id}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.article::showAction
+        _sylius:
+            redirect: app_frontend_article_show
+            template: "frontend/article/show.html.twig"
+            repository:
+                method: find
+                arguments:
+                    - $id
+
+app_frontend_article_add_comment:
+    path: /account/article/{postId}/add-comment
+    methods: [GET|POST]
+    defaults:
+        _controller: app.controller.comment::createAction
+        _sylius:
+            redirect:
+                route: app_frontend_article_show
+                parameters:
+                    id: $postId
+            template: "frontend/article/show.html.twig"
+            form: App\Form\Type\Article\CommentType
+            factory:
+                method: createNewWithPostAndAuthor
+                arguments:
+                    - expr:service('app.repository.article').find($postId)
+                    - expr:service('App\\Context\\CustomerContext').getCustomer()

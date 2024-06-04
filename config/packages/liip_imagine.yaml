@@ -2,3 +2,16 @@
 liip_imagine:
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
+    filter_sets:
+        # @see http://symfony.com/doc/current/bundles/LiipImagineBundle/filters.html
+        cache: ~
+        default:
+            quality: 100
+            filters:
+                auto_rotate: ~
+                relative_resize: { scale: 1 }
+        app_original: ~
+        app_backend_book_cover_thumbnail:
+            filters:
+                scale:
+                    dim: [ 120, 90 ]

@@ -1,0 +1,26 @@
+sylius_backend_vehicle_category:
+    resource: |
+        section: backend
+        alias: app.vehicle_category
+        templates: 'backend/crud'
+        except: ['show']
+        grid: app_backend_vehicle_category
+        redirect: index
+        vars:
+            all:
+                subheader: app.ui.manage_your_vehicle_category
+                templates:
+                    form: backend/vehicle_category/_form.html.twig
+            index:
+                icon: car
+    type: sylius.resource
+
+app_backend_vehicle_category_show:
+    path: /vehicle_category/{id}
+    defaults:
+        _controller: app.controller.vehicle_category::showAction
+        _sylius:
+            section: backend
+            template: backend/vehicle_category/show.html.twig
+            permission: true
+

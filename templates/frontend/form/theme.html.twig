@@ -145,3 +145,10 @@
         {{- form_errors(form) -}}
     </div>
 {% endblock %}
+
+{% block _app_comment_comment_row %}
+    <div class="test">
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+    </div>
+{% endblock %}

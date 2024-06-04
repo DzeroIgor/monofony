@@ -1,0 +1,25 @@
+sylius_backend_article:
+    resource: |
+        section: backend
+        alias: app.comment
+        templates: 'backend/crud'
+        except: ['show']
+        grid: app_backend_comment
+        redirect: index
+        vars:
+            all:
+                subheader: app.ui.manage_your_comments
+                templates:
+                    form: backend/comment/_form.html.twig
+            index:
+                icon: comment
+    type: sylius.resource
+
+app_backend_comment_show:
+    path: /comment/{id}
+    defaults:
+        _controller: app.controller.comment::showAction
+        _sylius:
+            section: backend
+            template: backend/comment/_form.html.twig
+            permission: true

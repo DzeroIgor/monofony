@@ -1,0 +1,34 @@
+<div class="eight wide column" id="info">
+{#{{ dump(book.cover.path) }}#}
+
+    {% set path = vich_uploader_asset(book.cover, 'file')|imagine_filter('app_original') %}
+
+{#    {{ dump(path) }}#}
+    <div class="ui card">
+        <div class="image">
+            <img src="{{ path }}">
+        </div>
+        <div class="content">
+            <a class="header">{{ book.title }}</a>
+            <div class="">
+                <span class="description">{{ book.author }}</span>
+            </div>
+            <div class="">
+                <span class="description">ISBN:{{ book.isbn }}</span>
+            </div>
+
+            <div class="meta">
+                <div class="description">
+                    Category age: {{ book.age }}
+                </div>
+                <span class="description">Category: {{ book.literatureCategory.name }}</span>
+
+                <div class="description">
+                    Published by: {{ book.publishingHouse }}
+                </div>
+            </div>
+            <div>{{ book.price|price('USD') }}</div>
+        </div>
+    </div>
+
+</div>

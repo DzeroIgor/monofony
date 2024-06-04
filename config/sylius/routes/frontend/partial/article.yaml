@@ -1,0 +1,12 @@
+app_frontend_partial_article_index_latest:
+    path: /latest/{count}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.article::indexAction
+        _sylius:
+            repository:
+                method: findAll
+            #        arguments: ['!!int $count']
+            template: $template
+
+

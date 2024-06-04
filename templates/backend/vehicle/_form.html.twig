@@ -1,0 +1,67 @@
+{% from 'backend/macros/translatiosForm.html.twig' import translationForm %}
+
+<div class="ui two column stackable grid">
+    {{ form_errors(form) }}
+    <div class="column">
+        <div class="ui segment">
+            <h4 class="ui dividing header">{{ 'app.ui.vehicle_details'|trans }}</h4>
+
+            {{ form_row(form.brand) }}
+            {{ form_row(form.model) }}
+            {{ form_row(form.category) }}
+            {{ form_row(form.year) }}
+            {{ form_row(form.vin) }}
+            {{ form_row(form.weight) }}
+            {{ form_row(form.measurement) }}
+            {{ form_row(form.engineVolume) }}
+            {{ form_row(form.engineNumber) }}
+            {{ form_row(form.engineType) }}
+            {{ form_row(form.numberOfPlaces) }}
+            {{ form_row(form.color) }}
+            {{ form_row(form.chassisNumber) }}
+            {{ form_row(form.bodyType) }}
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const form = document.getElementsByName('vehicle')[0];
+    // console.log(form)
+    const form_select_brand = document.getElementById('vehicle_brand');
+    const form_select_model = document.getElementById('vehicle_model');
+
+    const updateForm = async (data, url, method) => {
+        const req = await fetch(url, {
+            method: method,
+            body: data,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'charset': 'utf-8',
+                '_format': 'html'
+            }
+        });
+
+        const text = await req.text();
+
+        return text;
+    };
+
+    const parseTextToHtml = (text) => {
+        const parser = new DOMParser();
+        const html = parser.parseFromString(text, 'text/html');
+
+        return html;
+    };
+
+    const changeOptions = async (e) => {
+        const requestBody = e.target.getAttribute('name') + '=' + e.target.value;
+        const updateFormResponse = await updateForm(requestBody, form.getAttribute('action'), form.getAttribute('method'));
+        const html = parseTextToHtml(updateFormResponse);
+
+        const new_form_select_model = html.getElementById('vehicle_model');
+        form_select_model.innerHTML = new_form_select_model.innerHTML;
+    };
+
+    form_select_brand.addEventListener('change', (e) => changeOptions(e));
+</script>

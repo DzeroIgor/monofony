@@ -1,0 +1,12 @@
+app_frontend_article_show:
+    path: /article/{id}/comment
+    methods: [GET]
+    defaults:
+        _controller: app.controller.article::updateAction
+        _sylius:
+            template: "frontend/article/show.html.twig"
+            form: App\Form\Type\Article\ArticleCommentType
+            repository:
+                method: find
+                arguments:
+                    - $id

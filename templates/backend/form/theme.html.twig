@@ -92,3 +92,20 @@
 {% block app_admin_avatar_widget %}
     {{ block('app_image_entity_widget') }}
 {% endblock %}
+
+
+{# customized #}
+
+{% block money_widget -%}
+    <div class="ui labeled input">
+        <div class="ui label">{{ form.vars.currency }}</div>
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock money_widget %}
+
+{% block app_category_autocomplete_row %}
+    {{ form_row(form, {
+        'remote_url': path('app_backend_ajax_category_by_name_phrase'),
+        'load_edit_url': path('app_backend_ajax_category_by_code')}
+    ) }}
+{% endblock %}

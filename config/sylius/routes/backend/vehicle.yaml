@@ -1,0 +1,60 @@
+sylius_backend_vehicle:
+    resource: |
+        section: backend
+        alias: app.vehicle
+        templates: 'backend/crud'
+        except: ['show']
+        grid: app_backend_vehicle
+        redirect: index
+        vars:
+            all:
+                subheader: app.ui.manage_your_vehicle
+                templates:
+                    form: backend/vehicle/_form.html.twig
+            index:
+                icon: car
+    type: sylius.resource
+
+# workflow routes start
+app_backend_vehicle_buy:
+    path: /vehicles/{id}/buy
+    methods: [PUT]
+    defaults:
+        _controller: app.controller.vehicle::applyStateMachineTransitionAction
+        _sylius:
+            redirect: app_backend_vehicle_index
+            state_machine:
+                graph: app_vehicle
+                transition: buy
+
+app_backend_vehicle_crash:
+    path: /vehicles/{id}/crash
+    methods: [PUT]
+    defaults:
+        _controller: app.controller.vehicle::applyStateMachineTransitionAction
+        _sylius:
+            redirect: app_backend_vehicle_index
+            state_machine:
+                graph: app_vehicle
+                transition: crash
+
+app_backend_vehicle_repair:
+    path: /vehicles/{id}/repair
+    methods: [PUT]
+    defaults:
+        _controller: app.controller.vehicle::applyStateMachineTransitionAction
+        _sylius:
+            redirect: app_backend_vehicle_index
+            state_machine:
+                graph: app_vehicle
+                transition: repair
+# workflow routes end
+
+app_backend_vehicle_show:
+    path: /vehicles/{id}
+    defaults:
+        _controller: app.controller.vehicle::showAction
+        _sylius:
+            section: backend
+            template: backend/vehicle/show.html.twig
+            permission: true

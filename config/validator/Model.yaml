@@ -1,0 +1,4 @@
+App\Entity\Vehicle\Model:
+  properties:
+    name:
+      - NotBlank: { groups: [admin] }

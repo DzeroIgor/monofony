@@ -22,6 +22,9 @@ class AdminUser extends BaseUser implements AdminUserInterface
     #[ORM\OneToOne(targetEntity: AdminAvatar::class, cascade: ['persist'])]
     private ?AdminAvatarInterface $avatar = null;
 
+    #[ORM\Column(type: 'string', nullable: true, length: 5)]
+    private ?string $localeCode = null;
+
     public function __construct()
     {
         parent::__construct();
@@ -57,5 +60,15 @@ class AdminUser extends BaseUser implements AdminUserInterface
     public function setAvatar(?AdminAvatarInterface $avatar): void
     {
         $this->avatar = $avatar;
+    }
+
+    public function getLocaleCode(): ?string
+    {
+        return $this->localeCode;
+    }
+
+    public function setLocaleCode(?string $localeCode): void
+    {
+        $this->localeCode = $localeCode;
     }
 }

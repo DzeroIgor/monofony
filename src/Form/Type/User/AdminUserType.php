@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Form\Type\User;
 
 use App\Entity\User\AdminUser;
+use App\Form\Type\LocaleCodeChoiceType;
+use Sylius\Bundle\LocaleBundle\Form\Type\LocaleChoiceType;
 use Sylius\Bundle\UserBundle\Form\Type\UserType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,6 +35,9 @@ class AdminUserType extends UserType
             ->add('avatar', AdminAvatarType::class, [
                 'label' => 'app.ui.avatar',
                 'required' => false,
+            ])
+            ->add('localeCode', LocaleCodeChoiceType::class, [
+                'label' => 'app.ui.locale',
             ]);
     }
 

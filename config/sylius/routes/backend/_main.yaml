@@ -8,14 +8,53 @@ app_backend_partial:
     resource: "partial.yaml"
     prefix: /_partial
 
+app_backend_ajax:
+    resource: "ajax.yaml"
+    prefix: /ajax
+
 sylius_backend_admin_user:
     resource: "admin_user.yaml"
 
 sylius_backend_customer:
     resource: "customer.yaml"
 
+#    article routs
+
 sylius_backend_article:
     resource: "article.yaml"
 
+app_backend_article:
+    resource: "article.yaml"
+
+app_backend_comment:
+    resource: "comment.yaml"
+
+#    book routs
+
+app_backend_book:
+    resource: "book.yaml"
+
+app_backend_category:
+    resource: "category.yaml"
+
+#    vehicle routs
+
+app_backend_vehicle:
+    resource: "vehicle.yaml"
+
+app_backend_vehicle_category:
+    resource: "vehicle_category.yaml"
+
+app_backend_vehicle_brand:
+    resource: "vehicle_brand.yaml"
+
+#    sylius routs
+
 sylius_backend_security:
     resource: "security.yaml"
+
+sylius_backend_locale:
+    resource: "locale.yaml"
+
+sylius_backend_currency:
+    resource: "currency.yaml"

@@ -6,7 +6,6 @@
     {% else %}
         {{ form_widget(form) }}
     {% endif %}
-
     {% include '@SyliusUi/Form/Buttons/_create.html.twig' with {'paths': {'cancel': path(configuration.getRouteName('index'), configuration.vars.route.parameters|default({}))}} %}
 
     {{ form_end(form, {'render_rest': false}) }}

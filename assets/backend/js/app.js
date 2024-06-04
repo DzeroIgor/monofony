@@ -6,12 +6,14 @@ import 'sylius/ui/js/sylius-auto-complete';
 
 import './app-date-time-picker';
 import './app-images-preview';
+import './get-brand-vehicle';
 import './sylius-compound-form-errors';
 
 import '../scss/main.scss';
 
 $(document).ready(function () {
     $(document).previewUploadedImage('#sylius_admin_user_avatar');
+    $(document).handleBrandSelect();
 
     // Use this previewer for files uploads
     // $(document).previewUploadedFile('#app_book_file');

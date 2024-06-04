@@ -1,0 +1,24 @@
+{% extends 'backend/layout.html.twig' %}
+
+{% form_theme form 'backend/form/theme.html.twig' %}
+
+{% block content %}
+    <div class="ui two column stackable grid">
+        <div class="column form ui">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            <div class="ui segment">
+                <h4 class="ui dividing header">{{ 'app.ui.article_details'|trans }}</h4>
+                {{ form_row(form.title) }}
+                {{ form_row(form.text) }}
+                {{ form_row(form.comments) }}
+                <button class="ui button" type="submit">save</button>
+
+            </div>
+            {{ form_end(form) }}
+
+
+        </div>
+    </div>
+{% endblock %}

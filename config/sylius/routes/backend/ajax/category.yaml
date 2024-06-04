@@ -1,0 +1,27 @@
+app_backend_ajax_category_by_code:
+    path: /leaf
+    methods: [GET]
+    defaults:
+        _controller: app.controller.category::indexAction
+        _format: json
+        _sylius:
+            serialization_groups: [Autocomplete]
+            permission: true
+            repository:
+                method: findBy
+                arguments: [code: $code]
+
+app_backend_ajax_category_by_name_phrase:
+    path: /search
+    methods: [GET]
+    defaults:
+        _controller: app.controller.category::indexAction
+        _format: json
+        _sylius:
+            serialization_groups: [Autocomplete]
+            permission: true
+            repository:
+                method: findByNamePart
+                arguments:
+                    phrase: expr:service('request_stack').getCurrentRequest().query.get('phrase', '')
+                    limit: 25

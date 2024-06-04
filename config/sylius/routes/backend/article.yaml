@@ -8,12 +8,20 @@ sylius_backend_article:
         redirect: index
         vars:
             all:
-                subheader: sylius.ui.manage_your_customers
+                subheader: app.ui.manage_your_articles
                 templates:
                     form: backend/article/_form.html.twig
             index:
                 icon: users
     type: sylius.resource
+
+
+app_backend_article_add:
+    path: /articles/add
+    defaults:
+        _controller: app.controller.article::addAction
+#        _sylius :
+#            template: backend/article/testAdd.html.twig
 
 app_backend_article_show:
     path: /articles/{id}
@@ -23,3 +31,4 @@ app_backend_article_show:
             section: backend
             template: backend/article/show.html.twig
             permission: true
+

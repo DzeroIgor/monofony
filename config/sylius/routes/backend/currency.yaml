@@ -1,0 +1,27 @@
+sylius_admin_locale:
+  resource: |
+    alias: sylius.currency
+    section: admin
+    templates: "backend\\crud"
+    except: ['show', 'delete']
+    redirect: index
+    grid: app_backend_currency
+    permission: true
+    vars:
+        all:
+            subheader: sylius.ui.manage_currency_available_in_the_store
+            templates:
+                form: backend/currency/_form.html.twig
+        index:
+            icon: currency
+  type: sylius.resource
+
+sylius_admin_currency_delete:
+  path: /currencies/{id}
+  methods: [DELETE]
+  defaults:
+    _controller: sylius.controller.currency::deleteAction
+    _sylius:
+      section: admin
+      redirect: referer
+      permission: true

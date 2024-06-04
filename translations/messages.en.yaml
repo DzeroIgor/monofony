@@ -9,5 +9,39 @@ app:
         validate: Validate
         view_website: View website
         article_details: Article details
+        title: Title
+        text: Text
+        comment: Comment
+        manage_your_comments: Manage your comments
+        comments: Comments
+        latest_articles: Latest articles
+        manage_your_articles: Manage your articles
+        manage_your_books: Manage your books
+        articles: Articles
+        new_article: New Article
+
+        book: Book
+        books: Books
+        author: Author
+        book_details: Book details
+        publishing_house: Publishing House
+        literature_category: Literature Category
+        isbn: ISBN
+        category: Category
+        edit_book: Edit book
+
+        price: Price
+        age: Age
+        published_at: Published At
+        cover: Cover
+
+        vehicle: Vehicle
+        vehicles: Vehicles
+        brand: Brand
+        model: Model
+        models: Models
+        name: Name
+        vehicle_details: Vehicle Details
+
 sylius:
     ui: ~

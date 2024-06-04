@@ -24,6 +24,11 @@ sylius_ui:
                 security:
                     template: "backend/layout/_security.html.twig"
                     priority: 10
+        app.frontend.homepage.content:
+            blocks:
+                articles:
+                    template: "frontend/homepage/content/_articles.html.twig"
+                    priority: 10
 
 sonata_block:
     blocks:
@@ -38,3 +43,9 @@ twig:
     globals:
         app_name_meta:
             version: !php/const App\Kernel::VERSION
+
+sylius_grid:
+    templates:
+        action:
+            vehicle_state: "backend/vehicle/action/applyTransition.html.twig"
+            vehicle_transitions: "backend/vehicle/action/manageTransitions.html.twig"

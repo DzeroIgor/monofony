@@ -1,9 +1,15 @@
 app_account:
   resource: "account.yaml"
-  prefix: "mon-compte"
+  prefix: "account"
 
 sylius_security:
   resource: "security.yaml"
+
+app_article:
+  resource: "article.yaml"
+
+app_book:
+  resource: "book.yaml"
 
 app_frontend_partial:
   resource: "partial.yaml"

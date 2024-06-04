@@ -3,3 +3,43 @@ sylius_resource:
         app.article:
             classes:
                 model: App\Entity\Article\Article
+                form: App\Form\Type\Article\ArticleType
+                controller: App\Controller\Resource\ArticleController
+        app.comment:
+            classes:
+                model: App\Entity\Article\Comment
+                form: App\Form\Type\Article\CommentType
+        app.book:
+            classes:
+                model: App\Entity\Book\Book
+                form: App\Form\Type\Book\BookType
+                repository: App\Repository\BookRepository
+            translation:
+                classes:
+                    model: App\Entity\Book\BookTranslation
+        app.category:
+            classes:
+                model: App\Entity\Book\Category
+                form: App\Form\Type\Book\CategoryType
+                repository: App\Repository\CategoryRepository
+        app.book_cover:
+            classes:
+                model: App\Entity\Book\BookCover
+
+        app.vehicle:
+            classes:
+                model: App\Entity\Vehicle\Vehicle
+                form: App\Form\Type\Vehicle\VehicleType
+#                repository: App\Repository\VehicleRepository
+        app.vehicle_brand:
+            classes:
+                model: App\Entity\Vehicle\Brand
+                form: App\Form\Type\Vehicle\BrandType
+        app.vehicle_model:
+            classes:
+                model: App\Entity\Vehicle\Model
+                form: App\Form\Type\Vehicle\ModelType
+        app.vehicle_category:
+            classes:
+                model: App\Entity\Vehicle\Category
+                form: App\Form\Type\Vehicle\CategoryType

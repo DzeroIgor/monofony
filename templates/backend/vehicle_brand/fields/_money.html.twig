@@ -1,0 +1,5 @@
+{% if data.currency %}
+    {{ data.price|sylius_format_money(data.currency, app.user.localeCode) }}
+{% else %}
+    {{ data.price|sylius_format_money('EUR', app.user.localeCode) }}
+{% endif %}

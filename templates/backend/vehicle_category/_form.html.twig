@@ -1,0 +1,12 @@
+{% from 'backend/macros/translatiosForm.html.twig' import translationForm %}
+
+<div class="ui two column stackable grid">
+    {{ form_errors(form) }}
+    <div class="column">
+        <div class="ui segment">
+            <h4 class="ui dividing header">{{ 'app.ui.vehicle_category_details'|trans }}</h4>
+            {{ form_row(form.name) }}
+        </div>
+
+    </div>
+</div>

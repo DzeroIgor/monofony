@@ -1,0 +1,15 @@
+{% form_theme form 'frontend/form/theme.html.twig' %}
+
+{{ form_errors(form) }}
+{{ dump(form.comment) }}
+{{form_start(form, {'attr' : { 'novalidate': 'novalidate', 'class': 'ui form'}})}}
+<div>
+    {{ form_row(form.comment)}}
+</div>
+<div class="ui hidden divider"></div>
+<div class="ui container">
+    <button type="submit" class="fluid ui button">Add Comment!</button>
+</div>
+<div class="ui hidden divider"></div>
+{{ form_end(form) }}
+

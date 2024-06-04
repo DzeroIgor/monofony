@@ -1,0 +1,6 @@
+<h2 class="ui center aligned huge header">{{ 'app.ui.latest_articles'|trans }}</h2>
+<div class="ui hidden divider"></div>
+
+{{ render(url('app_frontend_partial_article_index_latest', {'count': 3, 'template': 'frontend/homepage/content/_list.html.twig'})) }}
+
+<div class="ui hidden divider"></div>

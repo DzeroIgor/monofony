@@ -46,5 +46,11 @@ services:
         tags:
             - { name: kernel.event_listener, event: 'app.book.index', method: onIndex }
 
+    App\Storage\OrganisationStorage:
+        arguments:
+            $storage: '@sylius.storage.session'
+
+    App\Storage\OrganisationStorageInterface: '@App\Storage\OrganisationStorage'
+
 imports:
     resource: "services/factory.yaml"

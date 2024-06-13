@@ -74,7 +74,7 @@ class Organisation implements OrganisationInterface
             }
         }
 
-        return  null;
+        return null;
     }
 
     /**

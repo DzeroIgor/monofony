@@ -35,16 +35,12 @@ app_frontend_organisation_create:
             template: frontend/crud/create.html.twig
             redirect:
                 route: app_frontend_organisation_update
-#                parameters: { organisationId: $organisationId }
-#            vars:
-#                route:
-#                    parameters:
-#                        organisationId: $organisationId
             factory:
                 method: createNewOrganisationWithMember
                 arguments:
                     - expr:service('App\\Context\\CustomerContext').getCustomer()
 
-#app_frontend_organisation_membership:
-#    resource: "organisation_membership.yaml"
-#    prefix: /organisation_membership
+app_frontend_organisation_switch:
+    path: /{code}/switch
+    defaults:
+        _controller: App\Controller\OrganisationSwitchAction

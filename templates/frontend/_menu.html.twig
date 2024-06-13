@@ -1,5 +1,25 @@
 <div class="ui right stackable inverted menu">
     {% if is_granted('ROLE_USER') %}
+        {% set organisations = app.user.customer.organisations %}
+        {% set currentOrganisation = app_get_current_organisation() %}
+
+        {% if organisations|length > 1 %}
+            <div class="ui pointing dropdown link item">
+                <span class="text sylius-active-organisation">{{ currentOrganisation.name }}</span>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    {% for organisation in organisations %}
+                        {% if organisation.code is not same as(currentOrganisation.code) %}
+                            <a href="{{ path('app_frontend_organisation_switch', {'code': organisation.code}) }}"
+                               class="item sylius-available-organisations">
+                                {{ organisation.name }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
         <div class="item">{{ 'sylius.ui.hello'|trans }} {{ app.user.customer.fullName }}!</div>
         <a href="{{ path('sylius_frontend_account_dashboard') }}" class="item">{{ 'sylius.ui.my_account'|trans }}</a>
         <a href="{{ path('app_frontend_logout') }}" class="item app-logout-button">{{ 'sylius.ui.logout'|trans }}</a>

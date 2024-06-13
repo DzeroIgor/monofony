@@ -1,0 +1,17 @@
+{% extends 'frontend/account/layout.html.twig' %}
+
+{% set definition = resources.definition %}
+{% set data = resources.data %}
+
+{% set header = configuration.vars.header|default(metadata.applicationName~'.ui.'~metadata.pluralName) %}
+
+{% block title %}{{ header|trans }} {{ parent() }}{% endblock %}
+
+{% block breadcrumb %}
+    {% include configuration.vars.templates.breadcrumb|default('frontend/crud/index/_breadcrumb.html.twig') %}
+{% endblock %}
+
+{% block subcontent %}
+    {% include 'frontend/crud/index/_header.html.twig' %}
+    {% include 'frontend/crud/index/_content.html.twig' %}
+{% endblock %}

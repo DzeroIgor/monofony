@@ -1,0 +1,25 @@
+sylius_backend_time_slot:
+    resource: |
+        section: backend
+        alias: app.time_slot
+        templates: 'backend/crud'
+        except: ['show']
+        grid: app_backend_time_slot
+        redirect: index
+        vars:
+            all:
+                subheader: app.ui.manage_your_time_slot
+                templates:
+                    form: backend/time_slot/_form.html.twig
+            index:
+                icon: clock
+    type: sylius.resource
+
+app_backend_time_slot_show:
+    path: /time_slot/{id}
+    defaults:
+        _controller: app.controller.time_slot::showAction
+        _sylius:
+            section: backend
+            template: backend/time_slot/show.html.twig
+            permission: true

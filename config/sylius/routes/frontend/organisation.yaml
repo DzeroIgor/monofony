@@ -1,0 +1,50 @@
+app_frontend_organisation:
+    resource: |
+        section: frontend
+        alias: app.organisation
+        templates: 'frontend/crud'
+        only: ['update', 'delete']
+        grid: app_frontend_organisation
+        redirect: index
+        vars:
+            all:
+                subheader: app.ui.manage_your_organisation
+                templates:
+                    form: frontend/organisation/_form.html.twig
+            index:
+                icon: cube
+    type: sylius.resource
+
+app_frontend_organisation_index:
+    path: /
+    defaults:
+        _controller: app.controller.organisation::indexAction
+        _sylius:
+            section: frontend
+            template: frontend/crud/index.html.twig
+            permission: true
+            grid: app_frontend_organisation
+
+app_frontend_organisation_create:
+    path: /new
+    methods: [ GET, POST ]
+    defaults:
+        _controller: app.controller.organisation::createAction
+        _sylius:
+            section: frontend
+            template: frontend/crud/create.html.twig
+            redirect:
+                route: app_frontend_organisation_update
+#                parameters: { organisationId: $organisationId }
+#            vars:
+#                route:
+#                    parameters:
+#                        organisationId: $organisationId
+            factory:
+                method: createNewOrganisationWithMember
+                arguments:
+                    - expr:service('App\\Context\\CustomerContext').getCustomer()
+
+#app_frontend_organisation_membership:
+#    resource: "organisation_membership.yaml"
+#    prefix: /organisation_membership

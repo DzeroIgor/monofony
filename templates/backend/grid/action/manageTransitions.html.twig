@@ -1,0 +1,26 @@
+{% set transitions = workflow_transitions(data) %}
+
+{% if transitions|length > 0 %}
+    <div class="ui{% if action.icon is defined %} labeled icon{% endif %} floating dropdown {{ options.class|default('') }} link button">
+        {% if action.icon is defined %}<i class="{{ action.icon }} icon"></i>{% endif %}
+        <span class="text">{{ action.label|trans }}</span>
+        <div class="menu">
+            {% if options.header is defined %}
+                <div class="header">
+                    {% if options.header.icon is defined %}<i class="{{ options.header.icon }} icon"></i>{% endif %}
+                    {{ options.header.label|trans }}
+                </div>
+                <div class="divider"></div>
+            {% endif %}
+            {% for transition in transitions %}
+                <form action="{{ path(options.route_prefix ~ transition.name, {'id': data.id}|merge(options.route_parameters|default([]))) }}" method="post" class="item">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token(data.id) }}">
+                    <input type="hidden" name="_method" value="PUT">
+                    <button class="ui loadable {{ options.class|default }} labeled icon button" type="submit" data-js-disable=".sylius-grid-table-wrapper button, .sylius-grid-table-wrapper a">
+                        <i class="icon"></i> {{ transition.name|capitalize }}
+                    </button>
+                </form>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

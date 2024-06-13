@@ -1,0 +1,26 @@
+sylius_backend_organisation:
+    resource: |
+        section: backend
+        alias: app.organisation
+        templates: 'backend/crud'
+        except: ['show']
+        grid: app_backend_organisation
+        redirect: index
+        vars:
+            all:
+                subheader: app.ui.manage_your_organisation
+                templates:
+                    form: backend/organisation/_form.html.twig
+            index:
+                icon: cube
+    type: sylius.resource
+
+app_backend_organisation_show:
+    path: /organisation/{id}
+    defaults:
+        _controller: app.controller.organisation::showAction
+        _sylius:
+            section: backend
+            template: backend/organisation/show.html.twig
+            permission: true
+

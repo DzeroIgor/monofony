@@ -23,3 +23,32 @@ framework:
                 repair:
                     from: totaled
                     to: salvage
+
+        app_task:
+            type: 'state_machine'
+            marking_store:
+                type: 'method'
+                property: 'stateAsString'
+            supports:
+                - App\Entity\Organisation\Task
+            initial_marking: new
+            places:
+                - new
+                - pending_review
+                - awaiting_changes
+                - accepted
+                - rejected
+                # list of all possible transitions:
+            transitions:
+                create:
+                    from: [ new ]
+                    to: pending_review
+                ask_for_changes:
+                    from: [ pending_review, accepted ]
+                    to: awaiting_changes
+                submit_changes:
+                    from: [ awaiting_changes ]
+                    to: pending_review
+                approve:
+                    from: [ pending_review, rejected ]
+                    to: accepted

@@ -3,15 +3,18 @@
 namespace App\Entity\Vehicle;
 
 use App\Entity\IdentifiableTrait;
+use App\Entity\ToggleableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'app_vehicle')]
 // #[ORM\UniqueConstraint(name: 'vin_inx', columns: ['vin'])]
-class Vehicle implements ResourceInterface
+class Vehicle implements VehicleInterface
 {
     use IdentifiableTrait;
+
+    use ToggleableTrait;
 
     #[ORM\Column(type: 'string')]
     private ?string $vin = null;
@@ -63,6 +66,8 @@ class Vehicle implements ResourceInterface
 
     #[ORM\Column(type: 'string', enumType: NumberOfPlaces::class)]
     private ?NumberOfPlaces $numberOfPlaces = null;
+
+    private ?string $size = null;
 
     public function getVin(): ?string
     {
@@ -232,5 +237,15 @@ class Vehicle implements ResourceInterface
     public function addAccident(): void
     {
         ++$this->numberOfAccident;
+    }
+
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+
+    public function setSize(?string $size): void
+    {
+        $this->size = $size;
     }
 }

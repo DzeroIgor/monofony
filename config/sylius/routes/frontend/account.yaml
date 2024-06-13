@@ -35,3 +35,11 @@ sylius_frontend_account_change_password:
         _sylius:
             template: "frontend/account/changePassword.html.twig"
             redirect: sylius_frontend_account_dashboard
+
+app_frontend_organisation:
+    resource: "organisation.yaml"
+    prefix: /organisations
+
+app_frontend_task:
+    resource: "task.yaml"
+    prefix: /tasks

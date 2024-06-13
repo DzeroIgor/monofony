@@ -48,6 +48,25 @@ app_backend_vehicle_category:
 app_backend_vehicle_brand:
     resource: "vehicle_brand.yaml"
 
+    #    organisation routs
+app_backend_organisation:
+    resource: "organisation.yaml"
+
+app_backend_organisation_membership:
+    resource: "organisation_membership.yaml"
+    prefix: /organisations/{organisationId}/members/
+
+app_backend_project:
+    resource: "project.yaml"
+    prefix: /organisations/{organisationId}/projects/
+
+app_backend_task:
+    resource: "task.yaml"
+    prefix: /projects/{projectId}/tasks/
+
+app_backend_time_slot:
+    resource: "time_slot.yaml"
+
 #    sylius routs
 
 sylius_backend_security:

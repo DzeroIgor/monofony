@@ -1,0 +1,133 @@
+app_frontend_task_index:
+    path: /
+    defaults:
+        _controller: app.controller.task::indexAction
+        _sylius:
+            section: frontend
+            template: frontend/crud/index.html.twig
+            grid: app_frontend_task
+#            vars:
+#                breadcrumb: 'app.ui.projects'
+#                route:
+#                    parameters:
+#                        projectId: $projectId
+#                templates:
+#                    breadcrumb: frontend/task/index/_breadcrumb.html.twig
+
+app_frontend_task_index_assignee:
+    path: /assigned
+    defaults:
+        _controller: app.controller.task::indexAction
+        _sylius:
+            section: frontend
+            template: frontend/crud/index.html.twig
+            grid: app_frontend_task_assignee
+
+app_frontend_task_create:
+    path: /new
+    methods: [ GET, POST ]
+    defaults:
+        _controller: app.controller.task::createAction
+        _sylius:
+            form: App\Form\Type\Organisation\CustomerTaskType
+            section: frontend
+            template: frontend/crud/create.html.twig
+            redirect:
+                route: app_frontend_task_index
+#            vars:
+#                breadcrumb: 'app.ui.projects'
+#                route:
+#                    parameters:
+#                        projectId: $projectId
+#                templates:
+#                    breadcrumb: frontend/task/index/_breadcrumb.html.twig
+#            factory:
+#                method: createNewWithProject
+#                arguments:
+#                    - expr:service('app.repository.project').find($projectId)
+
+
+app_frontend_task_update:
+    path: /{id}/edit
+    methods: [ GET, PUT ]
+    defaults:
+        _controller: app.controller.task::updateAction
+        _sylius:
+            section: frontend
+            template: frontend/crud/update.html.twig
+#            route:
+#                parameters: { projectId: $projectId }
+            redirect:
+                route: app_frontend_task_index
+#            vars:
+#                breadcrumb: 'app.ui.projects'
+#                route:
+#                    parameters:
+#                        projectId: $projectId
+#                        id: $id
+#                templates:
+#                    breadcrumb: frontend/task/update/_breadcrumb.html.twig
+#                    form: frontend/task/_form.html.twig
+
+app_frontend_task_delete:
+    path: /{id}
+    methods: [ DELETE ]
+    defaults:
+        _controller: app.controller.task::deleteAction
+        _sylius:
+            section: frontend
+            redirect: referer
+#            vars:
+#                route:
+#                    parameters:
+#                        organisationId: $organisationId
+
+# workflow routes start
+app_frontend_task_transition_create:
+    path: /task/{id}/create
+    methods: [PUT]
+    defaults:
+        _controller: app.controller.task::applyStateMachineTransitionAction
+        _sylius:
+            redirect:
+                route: app_frontend_task_index
+            state_machine:
+                graph: app_task
+                transition: create
+
+app_frontend_task_transition_ask_for_changes:
+    path: /task/{id}/ask_for_changes
+    methods: [PUT]
+    defaults:
+        _controller: app.controller.task::applyStateMachineTransitionAction
+        _sylius:
+            redirect:
+                route: app_frontend_task_index
+            state_machine:
+                graph: app_task
+                transition: ask_for_changes
+
+app_frontend_task_transition_submit_changes:
+    path: /task/{id}/submit_changes
+    methods: [PUT]
+    defaults:
+        _controller: app.controller.task::applyStateMachineTransitionAction
+        _sylius:
+            redirect:
+                route: app_frontend_task_index
+            state_machine:
+                graph: app_task
+                transition: submit_changes
+
+app_frontend_task_transition_approve:
+    path: /task/{id}/approve
+    methods: [PUT]
+    defaults:
+        _controller: app.controller.task::applyStateMachineTransitionAction
+        _sylius:
+            redirect:
+                route: app_frontend_task_index
+            state_machine:
+                graph: app_task
+                transition: approve
+# workflow routes end

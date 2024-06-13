@@ -1,0 +1,39 @@
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    app.factory.custom_comment:
+        class: App\Factory\CommentFactory
+        decorates: app.factory.comment
+        arguments: ['@.inner']
+        public: false
+
+    app.factory.custom_member:
+        class: App\Factory\MemberFactory
+        decorates: app.factory.organisation_membership
+        arguments:
+            $decorated: '@.inner'
+        public: false
+
+    app.factory.custom_project:
+        class: App\Factory\ProjectFactory
+        decorates: app.factory.project
+        arguments: ['@.inner']
+        public: false
+
+    app.factory.custom_task:
+        class: App\Factory\TaskFactory
+        decorates: app.factory.task
+        arguments: ['@.inner']
+        public: false
+
+    app.factory.custom_organisation:
+        class: App\Factory\OrganisationFactory
+        decorates: app.factory.organisation
+        arguments:
+            $decorated: '@.inner'
+            $organisationMembershipFactory: '@app.factory.organisation_membership'
+        public: false

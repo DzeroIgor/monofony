@@ -1,0 +1,23 @@
+{% import '@SyliusUi/Macro/breadcrumb.html.twig' as breadcrumb %}
+
+{% set index_url = path(
+    'app_backend_project_index',  {'organisationId': resource.project.organisation.id}
+)
+%}
+{% set task_url = path(
+    'app_backend_task_index', {'projectId': resource.project.id }
+)
+%}
+
+{% set breadcrumb = configuration.vars.breadcrumb|default(metadata.applicationName~'.ui.'~metadata.pluralName) %}
+
+{% set breadcrumbs = [
+    { label: 'sylius.ui.administration'|trans, url: path('app_backend_dashboard') },
+    { label: breadcrumb|trans, url: index_url },
+    { label: resource.project.name, url: task_url },
+    { label: resource.name|default(resource.code|default(resource.id)) },
+    { label: 'sylius.ui.edit'|trans }
+]
+%}
+
+    {{ breadcrumb.crumble(breadcrumbs) }}

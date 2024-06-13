@@ -3,6 +3,6 @@
 stof_doctrine_extensions:
     default_locale: en_US
 #    default_locale: '%kernel.default_locale%'
-#    orm:
-#        default:
-#        sortable: true
+    orm:
+        default:
+            timestampable: true

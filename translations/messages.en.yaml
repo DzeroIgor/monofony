@@ -43,5 +43,39 @@ app:
         name: Name
         vehicle_details: Vehicle Details
 
+        organisation: Organisation
+        organisations: Organisations
+        manage_your_organisation: Manage Your Organisation
+
+        organisation_membership: Organisation Membership
+        organisation_memberships: Organisation Memberships
+        manage_your_organisation_membership: Manage Your Organisation Membership
+        customer: Customer
+        position: Position
+        role: Role
+        status: Status
+        email: Email
+
+        project: Project
+        projects: Projects
+        manage_your_project: Manage Your Project
+        description: Description
+        created_at: Created At
+        updated_at: Updated At
+        verified_at: Verified At
+        completed_at: Completed At
+        enabled: Enabled
+
+
+        task: Task
+        tasks: Tasks
+        manage_your_task: Manage Your Task
+        assignee: Assignee
+
+        time_slot: Time Slot
+        time_slots: Time Slots
+        manage_your_time_slot: Manage Your Time Slot
+
+
 sylius:
     ui: ~

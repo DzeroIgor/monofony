@@ -27,4 +27,15 @@ $(document).ready(function () {
 
     $('.app-date-picker').datePicker();
     $('.app-date-time-picker').dateTimePicker();
+
+    $(document).on('collection-form-add', () => {
+
+        $('.app-date-picker').datePicker();
+        $('.app-date-time-picker').dateTimePicker();
+    });
+
+    // $(document).on('collection-form-update', () => {
+    //     $('.app-date-picker').datePicker();
+    //     $('.app-date-time-picker').dateTimePicker();
+    // });
 });

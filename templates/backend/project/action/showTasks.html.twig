@@ -1,0 +1,4 @@
+{#{{ dump(data) }}#}
+<a href="{{ path('app_backend_task_index', {'projectId': data.id}) }}" class="ui {{ options.class|default }} labeled icon button">
+    <i class="{{ action.icon }} icon"></i> {{ action.label|trans }}
+</a>

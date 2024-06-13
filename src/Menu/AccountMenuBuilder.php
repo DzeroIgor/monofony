@@ -40,6 +40,21 @@ final class AccountMenuBuilder implements AccountMenuBuilderInterface
             ->setLabel('sylius.ui.change_password')
             ->setLabelAttribute('icon', 'lock')
         ;
+        $menu
+            ->addChild('organisation', ['route' => 'app_frontend_organisation_index'])
+            ->setLabel('app.ui.organisation')
+            ->setLabelAttribute('icon', 'warehouse')
+        ;
+        $menu
+            ->addChild('task', ['route' => 'app_frontend_task_index'])
+            ->setLabel('app.ui.task')
+            ->setLabelAttribute('icon', 'tasks')
+        ;
+        $menu
+            ->addChild('assignee', ['route' => 'app_frontend_task_index_assignee'])
+            ->setLabel('app.ui.assignee')
+            ->setLabelAttribute('icon', 'user')
+        ;
 
         $this->eventDispatcher->dispatch(new MenuBuilderEvent($this->factory, $menu), self::EVENT_NAME);
 

@@ -5,7 +5,6 @@ namespace App\Twig;
 use Symfony\Component\Intl\Currencies;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-
 class AppExtension extends AbstractExtension
 {
     public function getFilters(): array

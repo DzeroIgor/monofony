@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Story;
 
-use App\Factory\AdminUserFactory;
+use App\Story\Factory\AdminUserFactory;
 use Zenstruck\Foundry\Story;
 
 final class DefaultAdministratorsStory extends Story

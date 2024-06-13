@@ -43,3 +43,28 @@ sylius_resource:
             classes:
                 model: App\Entity\Vehicle\Category
                 form: App\Form\Type\Vehicle\CategoryType
+#       Organisation repositories
+        app.organisation:
+            classes:
+                model: App\Entity\Organisation\Organisation
+                form: App\Form\Type\Organisation\OrganisationType
+                repository: App\Repository\OrganisationRepository
+        app.organisation_membership:
+            classes:
+                model: App\Entity\Organisation\OrganisationMembership
+                form: App\Form\Type\Organisation\OrganisationMembershipType
+                repository: App\Repository\OrganisationMembershipRepository
+        app.project:
+            classes:
+                model: App\Entity\Organisation\Project
+                form: App\Form\Type\Organisation\ProjectType
+                repository: App\Repository\ProjectRepository
+        app.task:
+            classes:
+                model: App\Entity\Organisation\Task
+                form: App\Form\Type\Organisation\TaskType
+                repository: App\Repository\TaskRepository
+        app.time_slot:
+            classes:
+                model: App\Entity\Organisation\TimeSlot
+                form: App\Form\Type\Organisation\TimeSlotType

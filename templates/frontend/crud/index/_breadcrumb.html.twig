@@ -1,0 +1,12 @@
+{% import '@SyliusUi/Macro/breadcrumb.html.twig' as breadcrumb %}
+
+{% set breadcrumb = configuration.vars.breadcrumb|default(metadata.applicationName~'.ui.'~metadata.pluralName) %}
+
+{% set breadcrumbs = [
+    { label: 'sylius.ui.home'|trans, url: path('app_frontend_homepage') },
+    { label: 'sylius.ui.my_account'|trans, url: path('sylius_frontend_account_dashboard') },
+    { label: breadcrumb|trans },
+]
+%}
+
+{{ breadcrumb.crumble(breadcrumbs) }}

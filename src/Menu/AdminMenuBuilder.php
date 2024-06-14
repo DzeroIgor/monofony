@@ -112,19 +112,29 @@ final class AdminMenuBuilder implements AdminMenuBuilderInterface
             ->addChild('backend_organisation', ['route' => 'app_backend_organisation_index'])
             ->setLabel('app.ui.organisation')
             ->setLabelAttribute('icon', 'warehouse')
+            ->setExtra('routes', [
+                'app_backend_organisation_index',
+                'app_backend_organisation_show',
+                'app_backend_organisation_create',
+                'app_backend_organisation_update',
+                'app_backend_organisation_membership_create',
+                'app_backend_organisation_membership_index',
+                'app_backend_organisation_membership_update',
+                'app_backend_project_create',
+                'app_backend_project_index',
+                'app_backend_project_update',
+                'app_backend_task_create',
+                'app_backend_task_index',
+                'app_backend_task_update',
+
+            ])
         ;
 
 //        $organisation
-//            ->addChild('backend_task', ['route' => 'app_backend_task_index'])
-//            ->setLabel('app.ui.task')
-//            ->setLabelAttribute('icon', 'tasks')
+//            ->addChild('backend_time_slot', ['route' => 'app_backend_time_slot_index'])
+//            ->setLabel('app.ui.time_slot')
+//            ->setLabelAttribute('icon', 'clock')
 //        ;
-
-        $organisation
-            ->addChild('backend_time_slot', ['route' => 'app_backend_time_slot_index'])
-            ->setLabel('app.ui.time_slot')
-            ->setLabelAttribute('icon', 'clock')
-        ;
     }
 
     private function addConfigurationSubMenu(ItemInterface $menu): void

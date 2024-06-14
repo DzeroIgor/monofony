@@ -9,7 +9,7 @@
 {% set breadcrumb = configuration.vars.breadcrumb|default(metadata.applicationName~'.ui.'~metadata.pluralName) %}
 
 {% set breadcrumbs = [
-    { label: 'sylius.ui.administration'|trans, url: path('app_backend_dashboard') },
+    { label: 'sylius.ui.my_account'|trans, url: path('sylius_frontend_account_dashboard') },
     { label: breadcrumb|trans, url: index_url },
     { label: 'sylius.ui.new'|trans }
 ]

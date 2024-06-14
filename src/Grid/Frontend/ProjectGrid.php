@@ -4,31 +4,30 @@ declare(strict_types=1);
 
 namespace App\Grid\Frontend;
 
-use App\Entity\Organisation\Organisation;
-use App\Grid\Action\DeleteOrganisationAction;
-use App\Grid\Action\UpdateOrganisationAction;
+use App\Entity\Organisation\Project;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
+use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
+use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\MainActionGroup;
 use Sylius\Bundle\GridBundle\Builder\Field\DateTimeField;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
-use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
 use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
 use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
 
-final class OrganisationGrid extends AbstractGrid implements ResourceAwareGridInterface
+final class ProjectGrid extends AbstractGrid implements ResourceAwareGridInterface
 {
     public static function getName(): string
     {
-        return 'app_frontend_organisation';
+        return 'app_frontend_project';
     }
 
     public function buildGrid(GridBuilderInterface $gridBuilder): void
     {
         $gridBuilder
-            ->setRepositoryMethod('findOrganisationsForMember', [
-                '$customer' => "expr:service('App\\\Context\\\CustomerContext').getCustomer()",
+            ->setRepositoryMethod('findProjectForMember', [
+                '$organisation' => "expr:service('App\\\Context\\\OrganisationContext').getOrganisation()",
             ])
             ->orderBy('name', 'asc')
             ->addField(
@@ -37,8 +36,8 @@ final class OrganisationGrid extends AbstractGrid implements ResourceAwareGridIn
                     ->setSortable(true)
             )
             ->addField(
-                TwigField::create('enabled', '@SyliusUi\Grid\Field\enabled.html.twig')
-                    ->setLabel('app.ui.enabled')
+                StringField::create('description')
+                    ->setLabel('app.ui.description')
             )
             ->addField(
                 DateTimeField::create('createdAt')
@@ -50,13 +49,13 @@ final class OrganisationGrid extends AbstractGrid implements ResourceAwareGridIn
             )
             ->addActionGroup(
                 MainActionGroup::create(
-                    CreateAction::create(),
+                    CreateAction::create()
                 )
             )
             ->addActionGroup(
                 ItemActionGroup::create(
-                    UpdateOrganisationAction::create(),
-                    DeleteOrganisationAction::create(),
+                    UpdateAction::create(),
+                    DeleteAction::create()
                 )
             )
         ;
@@ -64,6 +63,6 @@ final class OrganisationGrid extends AbstractGrid implements ResourceAwareGridIn
 
     public function getResourceClass(): string
     {
-        return Organisation::class;
+        return Project::class;
     }
 }

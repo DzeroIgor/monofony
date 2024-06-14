@@ -24,3 +24,6 @@ app_backend_organisation_show:
             template: backend/organisation/show.html.twig
             permission: true
 
+app_backend_organisation_membership:
+    resource: "organisation_membership.yaml"
+    prefix: /organisations/{organisationId}/members/

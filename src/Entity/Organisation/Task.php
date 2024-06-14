@@ -10,6 +10,7 @@ use App\Entity\TimeSlotsAwareTrait;
 use App\Entity\TimeStampTrait;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Sylius\Component\Customer\Model\CustomerInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'app_task')]
@@ -108,6 +109,11 @@ class Task implements TaskInterface
         $this->author = $author;
     }
 
+    public function isAuthor(CustomerInterface $customer): bool
+    {
+        return $this->getAuthor()->getCustomer() === $customer;
+    }
+
     public function addTimeSlot(?TimeSlot $timeSlot = null): void
     {
         if (!$this->hasTimeSlot($timeSlot)) {
@@ -147,5 +153,4 @@ class Task implements TaskInterface
 
         return $this;
     }
-
 }

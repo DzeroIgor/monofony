@@ -15,8 +15,8 @@ final class AccountMenuBuilder implements AccountMenuBuilderInterface
     public const EVENT_NAME = 'sylius.menu.app.account';
 
     public function __construct(
-        private FactoryInterface $factory,
-        private EventDispatcherInterface $eventDispatcher,
+        private readonly FactoryInterface $factory,
+        private readonly EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
@@ -44,6 +44,11 @@ final class AccountMenuBuilder implements AccountMenuBuilderInterface
             ->addChild('organisation', ['route' => 'app_frontend_organisation_index'])
             ->setLabel('app.ui.organisation')
             ->setLabelAttribute('icon', 'warehouse')
+        ;
+        $menu
+            ->addChild('project', ['route' => 'app_frontend_project_index'])
+            ->setLabel('app.ui.project')
+            ->setLabelAttribute('icon', 'file alternate')
         ;
         $menu
             ->addChild('task', ['route' => 'app_frontend_task_index'])

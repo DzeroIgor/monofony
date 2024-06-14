@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Organisation\Organisation;
+use App\Entity\Organisation\OrganisationInterface;
 use App\Entity\Organisation\Project;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
@@ -26,4 +27,13 @@ class ProjectFactory implements FactoryInterface
 
         return $project;
     }
+    public function createNewOneWithOrganisation(?OrganisationInterface $organisation): Project
+    {
+        $project = $this->createNew();
+
+        $project->setOrganisation($organisation);
+
+        return $project;
+    }
+
 }

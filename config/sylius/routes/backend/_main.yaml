@@ -52,10 +52,6 @@ app_backend_vehicle_brand:
 app_backend_organisation:
     resource: "organisation.yaml"
 
-app_backend_organisation_membership:
-    resource: "organisation_membership.yaml"
-    prefix: /organisations/{organisationId}/members/
-
 app_backend_project:
     resource: "project.yaml"
     prefix: /organisations/{organisationId}/projects/

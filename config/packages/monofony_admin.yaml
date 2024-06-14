@@ -47,15 +47,22 @@ twig:
 sylius_grid:
     templates:
         action:
-#            transaction
+#            --transaction
             vehicle_state: "backend/vehicle/action/applyTransition.html.twig"
             vehicle_transitions: "backend/grid/action/manageTransitions.html.twig"
             task_status_transitions: "backend/grid/action/manageTransitions.html.twig"
             frontend_task_status_transitions: "frontend/grid/action/manageTransitions.html.twig"
-#            modify frontend action
+#            --modify frontend action
             update_organisation: "frontend/organisation/action/update.html.twig"
             delete_organisation: "frontend/organisation/action/delete.html.twig"
-#            links
+            delete_task: "frontend/task/action/delete.html.twig"
+            update_task: "frontend/task/action/update.html.twig"
+#            --links
             show_members: "backend/organisation/action/showMembers.html.twig"
             show_projects: "backend/organisation/action/showProjects.html.twig"
             show_tasks: "backend/project/action/showTasks.html.twig"
+#            --action
+            create: "common/grid/action/create.html.twig"
+            delete: "common/grid/action/delete.html.twig"
+            show: "common/grid/action/show.html.twig"
+            update: "common/grid/action/update.html.twig"

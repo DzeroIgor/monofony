@@ -1,8 +1,7 @@
 {% import '@SyliusUi/Macro/breadcrumb.html.twig' as breadcrumb %}
 
-{% set index_url = path(
-    configuration.vars.index.route.name|default(configuration.getRouteName('index')),
-    configuration.vars.index.route.parameters|default(configuration.vars.route.parameters|default({}))
+{% set project_url = path(
+    'app_backend_project_index', {'organisationId': resource.organisation.id }
 )
 %}
 
@@ -10,10 +9,10 @@
 
 {% set breadcrumbs = [
     { label: 'sylius.ui.my_account'|trans, url: path('sylius_frontend_account_dashboard') },
-    { label: breadcrumb|trans, url: index_url },
+    { label: 'app.ui.projects'|trans, url: path('app_frontend_project_index') },
     { label: resource.name|default(resource.code|default(resource.id)) },
     { label: 'sylius.ui.edit'|trans }
 ]
 %}
 
-{{ breadcrumb.crumble(breadcrumbs) }}
+    {{ breadcrumb.crumble(breadcrumbs) }}

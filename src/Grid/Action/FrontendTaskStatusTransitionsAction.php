@@ -14,9 +14,6 @@ class FrontendTaskStatusTransitionsAction
         $action->setIcon('cubes icon');
         $action->setOptions([
             'route_prefix' => 'app_frontend_task_transition_',
-//            'route_parameters' => [
-//                'projectId' => '$projectId',
-//            ],
         ]);
 
         return $action;

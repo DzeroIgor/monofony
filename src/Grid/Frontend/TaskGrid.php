@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace App\Grid\Frontend;
 
 use App\Entity\Organisation\Task;
+use App\Grid\Action\DeleteTaskAction;
 use App\Grid\Action\FrontendTaskStatusTransitionsAction;
+use App\Grid\Action\UpdateTaskAction;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
-use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
 use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\MainActionGroup;
@@ -61,10 +62,6 @@ final class TaskGrid extends AbstractGrid implements ResourceAwareGridInterface
                     ->setLabel('app.ui.assignee')
             )
             ->addField(
-                StringField::create('author')
-                    ->setLabel('app.ui.author')
-            )
-            ->addField(
                 TwigField::create('timeSlots', 'backend/task/grids/fields/time_slot.html.twig')
                     ->setLabel('app.ui.time_slots')
             )
@@ -80,22 +77,12 @@ final class TaskGrid extends AbstractGrid implements ResourceAwareGridInterface
             ->addActionGroup(
                 ItemActionGroup::create(
                     FrontendTaskStatusTransitionsAction::create(),
-                    //                    UpdateAction::create([
-                    //                        'link' => [
-                    //                            'parameters' => [
-                    //                                'projectId' => '$projectId',
-                    //                                'id' => 'resource.id',
-                    //                            ],
-                    //                        ],
-                    //                    ]),
-                    //                    DeleteAction::create([
-                    //                        'link' => [
-                    //                            'parameters' => [
-                    //                                'projectId' => '$projectId',
-                    //                                'id' => 'resource.id',
-                    //                            ],
-                    //                        ],
-                    //                    ])
+                    UpdateTaskAction::create(),
+                    DeleteTaskAction::create(
+                        //                        [
+                        //                            'visible' => 'resource.isAuthor',
+                        //                        ]
+                    )
                 )
             )
         ;

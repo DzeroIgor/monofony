@@ -6,6 +6,7 @@ namespace App\Entity\Organisation;
 
 use App\Entity\CodeAwareInterface;
 use App\Entity\TimeStampInterface;
+use Sylius\Component\Customer\Model\CustomerInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 interface TaskInterface extends ResourceInterface, TimeStampInterface, CodeAwareInterface
@@ -29,6 +30,8 @@ interface TaskInterface extends ResourceInterface, TimeStampInterface, CodeAware
     public function getAuthor(): ?OrganisationMembership;
 
     public function setAuthor(?OrganisationMembership $author): void;
+
+    public function isAuthor(CustomerInterface $customer): bool;
 
     public function getAssignee(): ?OrganisationMembership;
 

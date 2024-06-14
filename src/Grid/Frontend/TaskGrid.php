@@ -30,6 +30,7 @@ final class TaskGrid extends AbstractGrid implements ResourceAwareGridInterface
         $gridBuilder
             ->setRepositoryMethod('findTasksForMember', [
                 '$customer' => "expr:service('App\\\Context\\\CustomerContext').getCustomer()",
+                '$organisation' => "expr:service('App\\\Context\\\OrganisationContext').getOrganisation()",
             ])
             ->orderBy('name', 'asc')
             ->addField(
@@ -73,13 +74,7 @@ final class TaskGrid extends AbstractGrid implements ResourceAwareGridInterface
             )
             ->addActionGroup(
                 MainActionGroup::create(
-                    CreateAction::create([
-//                        'link' => [
-//                            'parameters' => [
-//                                'projectId' => '$projectId',
-//                            ],
-//                        ],
-                    ]),
+                    CreateAction::create(),
                 )
             )
             ->addActionGroup(

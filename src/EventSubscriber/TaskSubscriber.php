@@ -18,7 +18,7 @@ class TaskSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'app.task.pre_create' => 'preCreate',
+//            'app.task.pre_create' => 'preCreate',
         ];
     }
 

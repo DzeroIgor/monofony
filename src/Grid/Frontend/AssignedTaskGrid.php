@@ -40,6 +40,7 @@ final class AssignedTaskGrid extends AbstractGrid implements ResourceAwareGridIn
         $gridBuilder
             ->setRepositoryMethod('findAssignedTasks', [
                 '$customer' => "expr:service('App\\\Context\\\CustomerContext').getCustomer()",
+                '$organisation' => "expr:service('App\\\Context\\\OrganisationContext').getOrganisation()",
             ])
         ;
         $gridBuilder->addActionGroup(

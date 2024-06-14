@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Customer\Customer;
+use App\Entity\Organisation\OrganisationInterface;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
@@ -18,13 +19,11 @@ class ProjectRepository extends EntityRepository
         ;
     }
 
-    public function getCustomerProjectsQueryBuilder(Customer $customer): QueryBuilder
+    public function getCustomerProjectsQueryBuilder(OrganisationInterface $organisation): QueryBuilder
     {
         return $this->createQueryBuilder('o')
-            ->leftJoin('o.organisation', 'organisation')
-            ->leftJoin('organisation.members', 'members')
-            ->andWhere('members.customer = :customer')
-            ->setParameter('customer', $customer)
+            ->andWhere('o.organisation = :organisation')
+            ->setParameter('organisation', $organisation)
         ;
     }
 }

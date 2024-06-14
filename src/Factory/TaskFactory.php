@@ -2,8 +2,10 @@
 
 namespace App\Factory;
 
+use App\Entity\Organisation\OrganisationInterface;
 use App\Entity\Organisation\Project;
 use App\Entity\Organisation\Task;
+use Sylius\Component\Customer\Model\CustomerInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
 class TaskFactory implements FactoryInterface
@@ -23,6 +25,16 @@ class TaskFactory implements FactoryInterface
         $task = $this->createNew();
 
         $task->setProject($project);
+
+        return $task;
+    }
+
+    public function createNewWithAuthor(?OrganisationInterface $organisation, ?CustomerInterface $customer): Task
+    {
+        $task = $this->createNew();
+
+        $member = $organisation->getCustomerMember($customer);
+        $task->setAuthor($member);
 
         return $task;
     }

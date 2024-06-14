@@ -50,6 +50,9 @@ services:
         arguments:
             $storage: '@sylius.storage.session'
 
+    App\Context\OrganisationContext:
+        public: true
+
     App\Storage\OrganisationStorageInterface: '@App\Storage\OrganisationStorage'
 
 imports:

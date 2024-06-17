@@ -1,0 +1,25 @@
+app_backend_catalogue:
+    resource: |
+        section: backend
+        alias: app.catalogue
+        templates: 'backend/crud'
+        except: ['show']
+        grid: app_backend_catalogue
+        redirect: index
+        vars:
+            all:
+                subheader: app.ui.manage_your_catalogues
+                templates:
+                    form: backend/catalogue/_form.html.twig
+            index:
+                icon: book
+    type: sylius.resource
+
+app_backend_catalogue_show:
+    path: /catalogue/{id}
+    defaults:
+        _controller: app.controller.catalogue::showAction
+        _sylius:
+            section: backend
+            template: backend/catalogue/show.html.twig
+            permission: true

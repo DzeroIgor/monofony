@@ -21,6 +21,7 @@ final class AdminMenuBuilder implements AdminMenuBuilderInterface
         $this->addCustomerSubMenu($menu);
         $this->addArticleSubMenu($menu);
         $this->addBookSubMenu($menu);
+        $this->addCatalogueSubMenu($menu);
         $this->addVehicleSubMenu($menu);
         $this->addOrganisationSubMenu($menu);
         $this->addConfigurationSubMenu($menu);
@@ -74,6 +75,18 @@ final class AdminMenuBuilder implements AdminMenuBuilderInterface
 
         $book->addChild('backend_category', ['route' => 'app_backend_category_index'])
             ->setLabel('app.ui.category')
+            ->setLabelAttribute('icon', 'book')
+        ;
+    }
+    private function addCatalogueSubMenu(ItemInterface $menu): void
+    {
+        $catalogue = $menu
+            ->addChild('catalogue')
+            ->setLabel('app.ui.catalogue')
+        ;
+
+        $catalogue->addChild('backend_catalogue', ['route' => 'app_backend_catalogue_index'])
+            ->setLabel('app.ui.catalogue')
             ->setLabelAttribute('icon', 'book')
         ;
     }

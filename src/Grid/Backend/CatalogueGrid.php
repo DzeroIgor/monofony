@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace App\Grid\Backend;
 
-use App\Entity\Organisation\Organisation;
-use App\Grid\Action\ShowMembersAction;
-use App\Grid\Action\ShowProjectAction;
-use Imagine\Filter\Basic\Show;
+use App\Entity\Catalogue\Catalogue;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
 use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
 use Sylius\Bundle\GridBundle\Builder\Action\ShowAction;
@@ -15,7 +12,6 @@ use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\BulkActionGroup;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\MainActionGroup;
-use Sylius\Bundle\GridBundle\Builder\Field\DateTimeField;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
 use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
 use Sylius\Bundle\GridBundle\Builder\Filter\StringFilter;
@@ -23,59 +19,54 @@ use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
 use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
 
-final class OrganisationGrid extends AbstractGrid implements ResourceAwareGridInterface
+final class CatalogueGrid extends AbstractGrid implements ResourceAwareGridInterface
 {
     public static function getName(): string
     {
-        return 'app_backend_organisation';
+        return 'app_backend_catalogue';
     }
 
     public function buildGrid(GridBuilderInterface $gridBuilder): void
     {
-        $gridBuilder->orderBy('name', 'asc')
+        $gridBuilder
+//            ->setRepositoryMethod('createListQueryBuilder', [$this->localeContext->getLocaleCode()])
+            ->orderBy('title', 'asc')
             ->addField(
-                StringField::create('name')
-                    ->setLabel('app.ui.name')
+                StringField::create('title')
+                    ->setLabel('app.ui.title')
                     ->setSortable(true)
             )
             ->addField(
-                TwigField::create('enabled', '@SyliusUi\Grid\Field\enabled.html.twig')
-                    ->setLabel('app.ui.enabled')
+                StringField::create('url')
+                    ->setLabel('app.ui.url')
             )
             ->addField(
-                DateTimeField::create('createdAt')
-                    ->setLabel('app.ui.created_at')
+                TwigField::create('cover', 'backend/catalogue/fields/_cover.html.twig')
+                    ->setLabel('app.ui.cover')
+                    ->setSortable(true)
             )
-            ->addField(
-                DateTimeField::create('updatedAt')
-                    ->setLabel('app.ui.updated_at')
-                    ->setEnabled(true)
-            )
+            ->addFilter(StringFilter::create('search', ['title']))
             ->addActionGroup(
                 MainActionGroup::create(
                     CreateAction::create(),
                 )
-            )
-            ->addActionGroup(
+            )->addActionGroup(
                 BulkActionGroup::create(
                     DeleteAction::create()
                 )
             )
             ->addActionGroup(
                 ItemActionGroup::create(
-                    ShowMembersAction::create(),
-                    ShowProjectAction::create(),
                     ShowAction::create(),
                     UpdateAction::create(),
                     DeleteAction::create()
                 )
             )
-            ->addFilter(StringFilter::create('search', ['name']))
         ;
     }
 
     public function getResourceClass(): string
     {
-        return Organisation::class;
+        return Catalogue::class;
     }
 }

@@ -1,0 +1,38 @@
+{% extends 'backend/layout.html.twig' %}
+{% block content %}
+
+    <h1 class="ui header">{{ organisation.name }}</h1>
+
+    <div class="ui paragraph text grey">{{ 'app.ui.created_at'|trans }} - <span class="ui text grey">{{ organisation.createdAt|date }}</span> | {{ 'app.ui.updated_at'|trans }} - <span class="ui text grey">{{ organisation.updatedAt|date }}</span></div>
+
+    <div class="ui divider"></div>
+
+    <div class="ui small header">{{ 'app.ui.organisation_projects'|trans }}</div>
+    <ol class="ui list">
+        {% for project in organisation.projects %}
+            <li class="item">
+                {{ project.name }}
+            </li>
+            <br>
+        {% endfor %}
+    </ol>
+
+    <div class="ui divider"></div>
+
+    <div class="ui small header">{{ 'app.ui.organisation_members'|trans }}</div>
+    <ol class="ui list">
+        {% for member in organisation.members %}
+            <li class="item">
+                {{ member.customer.firstName ~ member.customer.lastName }}
+                <br>
+                <br>
+                {{ 'app.ui.position'|trans ~ ': ' }}{{ member.position.name }}
+                <br>
+                <br>
+                {{ 'app.ui.role'|trans ~ ': ' }}{{ member.role.name }}
+            </li>
+            <br>
+        {% endfor %}
+    </ol>
+
+{% endblock %}

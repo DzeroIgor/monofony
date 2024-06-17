@@ -1,0 +1,7 @@
+{% if data is not null %}
+    {% set path = vich_uploader_asset(data, 'file')|imagine_filter('app_backend_catalogue_cover_thumbnail') %}
+{% else %}
+    {% set path = asset('assets/backend/img/avatar.png'|imagine_filter('app_backend_admin_user_avatar_thumbnail')) %}
+{% endif %}
+
+<img style="margin-right: 10px; margin: auto;" class="ui image" src="{{ path }}">

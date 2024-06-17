@@ -3,6 +3,6 @@
 {#    {{ dump(timeSlot.duration) }}#}
     {{ 'Date: ' ~ timeSlot.date|date('Y-m-d') }}
     <br>
-    {{ 'Duration: ' ~ timeSlot.duration|date('%H:%i:%S') }}
+    {{ 'Duration: ' ~ timeSlot.duration|date('%H:%I:%S') }}
 
 {% endfor %}

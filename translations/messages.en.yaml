@@ -49,6 +49,8 @@ app:
 
         organisation_membership: Organisation Membership
         organisation_memberships: Organisation Memberships
+        organisation_members: Organisation Members
+        organisation_projects: Organisation Projects
         manage_your_organisation_membership: Manage Your Organisation Membership
         customer: Customer
         position: Position

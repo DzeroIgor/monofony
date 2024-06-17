@@ -68,3 +68,13 @@ sylius_resource:
             classes:
                 model: App\Entity\Organisation\TimeSlot
                 form: App\Form\Type\Organisation\TimeSlotType
+
+#       Organisation repositories
+        app.catalogue:
+            classes:
+                model: App\Entity\Catalogue\Catalogue
+                form: App\Form\Type\Catalogue\CatalogueType
+#                repository: App\Repository\CatalogueRepository
+        app.catalogue_cover:
+            classes:
+                model: App\Entity\Catalogue\CatalogueCover

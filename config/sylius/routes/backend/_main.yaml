@@ -73,3 +73,6 @@ sylius_backend_locale:
 
 sylius_backend_currency:
     resource: "currency.yaml"
+
+app_backend_catalogue:
+    resource: "catalogue.yaml"

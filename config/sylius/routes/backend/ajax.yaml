@@ -1,3 +1,7 @@
 sylius_backend_ajax_category:
     resource: ajax/category.yaml
     prefix: /categories
+
+sylius_backend_ajax_member:
+    resource: ajax/member.yaml
+    prefix: /members

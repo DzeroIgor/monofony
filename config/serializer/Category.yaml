@@ -1,8 +1,8 @@
 App\Entity\Book\Category:
-  attributes:
-    code:
-      groups: [sylius,Autocomplete]
-    name:
-      groups: [sylius,Autocomplete]
-    id:
-      groups: [sylius]
+    attributes:
+        code:
+            groups: [ sylius,Autocomplete ]
+        name:
+            groups: [ sylius,Autocomplete ]
+        id:
+            groups: [ sylius ]

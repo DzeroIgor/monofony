@@ -1,0 +1,9 @@
+App\Entity\Organisation\OrganisationMembership:
+    attributes:
+        id:
+            groups:
+                - 'Autocomplete'
+
+        name:
+            groups:
+                - 'Autocomplete'

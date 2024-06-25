@@ -1,4 +1,4 @@
-sylius_backend_time_slot:
+app_backend_time_slot:
     resource: |
         section: backend
         alias: app.time_slot

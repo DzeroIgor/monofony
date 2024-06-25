@@ -1,5 +1,6 @@
 app:
     ui:
+        id: ID
         avatar: Avatar
         create_user: Create an user
         forgotten_password: Forgotten password
@@ -45,7 +46,7 @@ app:
 
         organisation: Organisation
         organisations: Organisations
-        manage_your_organisation: Manage Your Organisation
+        manage_your_organisations: Manage Your Organisations
 
         organisation_membership: Organisation Membership
         organisation_memberships: Organisation Memberships
@@ -77,6 +78,10 @@ app:
         time_slot: Time Slot
         time_slots: Time Slots
         manage_your_time_slot: Manage Your Time Slot
+
+        catalogue: Catalogue
+        catalogues: Catalogues
+        manage_your_catalogues: Manage your Catalogues
 
 
 sylius:

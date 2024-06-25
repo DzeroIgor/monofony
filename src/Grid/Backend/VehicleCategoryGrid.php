@@ -28,15 +28,16 @@ final class VehicleCategoryGrid extends AbstractGrid implements ResourceAwareGri
         $gridBuilder
             ->orderBy('name', 'asc')
             ->addField(
+                StringField::create('id')
+                    ->setLabel('app.ui.id')
+                    ->setSortable(true)
+            )
+            ->addField(
                 StringField::create('name')
                 ->setLabel('app.ui.name')
                 ->setSortable(true)
             )
-            ->addField(
-                StringField::create('id')
-                ->setLabel('app.ui.id')
-                ->setSortable(true)
-            )
+
             // main action group
             ->addActionGroup(
                 MainActionGroup::create(

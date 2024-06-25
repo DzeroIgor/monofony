@@ -7,7 +7,7 @@ namespace App\Grid\Backend;
 use App\Entity\Organisation\Organisation;
 use App\Grid\Action\ShowMembersAction;
 use App\Grid\Action\ShowProjectAction;
-use Imagine\Filter\Basic\Show;
+use Sylius\Bundle\GridBundle\Builder\Action\Action;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
 use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
 use Sylius\Bundle\GridBundle\Builder\Action\ShowAction;

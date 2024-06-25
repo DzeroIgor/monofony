@@ -1,20 +1,20 @@
-{% import '@SyliusUi/Macro/breadcrumb.html.twig' as breadcrumb %}
+{#{% import '@SyliusUi/Macro/breadcrumb.html.twig' as breadcrumb %}#}
 
-{% set project = app_get_project(app.request.get('projectId')) %}
+{#{% set project = app_get_project(app.request.get('projectId')) %}#}
 
-{% set index_url = path(
-    'app_backend_project_index', {'organisationId': project.organisation.id}
-)
-%}
+{#{% set index_url = path(#}
+{#    'app_backend_project_index', {'organisationId': project.organisation.id}#}
+{#)#}
+{#%}#}
 
-{% set breadcrumb = configuration.vars.breadcrumb|default(metadata.applicationName~'.ui.'~metadata.pluralName) %}
+{#{% set breadcrumb = configuration.vars.breadcrumb|default(metadata.applicationName~'.ui.'~metadata.pluralName) %}#}
 
-{% set breadcrumbs = [
-    { label: 'sylius.ui.administration'|trans, url: path('app_backend_dashboard') },
-    { label: breadcrumb|trans, url: index_url },
-    { label: project.name },
-    { label: 'app.ui.tasks'|trans }
-]
-%}
+{#{% set breadcrumbs = [#}
+{#    { label: 'sylius.ui.administration'|trans, url: path('app_backend_dashboard') },#}
+{#    { label: breadcrumb|trans, url: index_url },#}
+{#    { label: project.name },#}
+{#    { label: 'app.ui.tasks'|trans }#}
+{#]#}
+{#%}#}
 
-{{ breadcrumb.crumble(breadcrumbs) }}
+{#{{ breadcrumb.crumble(breadcrumbs) }}#}

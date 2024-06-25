@@ -139,4 +139,15 @@ class OrganisationMembership implements OrganisationMembershipInterface
 
         return $this->email;
     }
+
+    public function getName(): string
+    {
+        $customer = $this->getCustomer();
+
+        if (null !== $customer) {
+            return $customer->getFullName();
+        }
+
+        return $this->email ?? '';
+    }
 }

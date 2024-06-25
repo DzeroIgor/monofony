@@ -6,8 +6,9 @@ namespace App\Grid\Frontend;
 
 use App\Entity\Organisation\Task;
 use App\Grid\Action\FrontendTaskStatusTransitionsAction;
-use App\Grid\Action\TaskStatusTransitionsAction;
+use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
+use Sylius\Bundle\GridBundle\Builder\ActionGroup\MainActionGroup;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
 use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
@@ -43,6 +44,12 @@ final class AssignedTaskGrid extends AbstractGrid implements ResourceAwareGridIn
                 '$organisation' => "expr:service('App\\\Context\\\OrganisationContext').getOrganisation()",
             ])
         ;
+        $gridBuilder->addActionGroup(
+            MainActionGroup::create(
+                CreateAction::create()
+                ->setEnabled(false),
+            )
+        );
         $gridBuilder->addActionGroup(
             ItemActionGroup::create(
                 FrontendTaskStatusTransitionsAction::create(),

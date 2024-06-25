@@ -1,0 +1,18 @@
+{{ form_row(form.name) }}
+
+{{ form_row(form.author, {
+    'remote_url': path('app_backend_ajax_member_by_name_phrase', {'organisationId': resource.project.organisation.id|default(null) }),
+    'load_edit_url': path('app_backend_ajax_member_by_id')}
+)}}
+
+{{ form_row(form.description) }}
+
+{{ form_row(form.assignee, {
+    'remote_url': path('app_backend_ajax_member_by_name_phrase', {'organisationId': resource.project.organisation.id|default(null) }),
+    'load_edit_url': path('app_backend_ajax_member_by_id')}
+) }}
+
+{{ form_row(form.timeSlots) }}
+
+{#{{ dump(resource.project.id) }}#}
+{#{{ dump(resource.organisation.id) }}#}

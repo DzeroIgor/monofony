@@ -33,7 +33,7 @@ app_frontend_project_create:
 #                templates:
 #                    breadcrumb: frontend/project/index/_breadcrumb.html.twig
             factory:
-                method: createNewOneWithOrganisation
+                method: createNewWithOrganisation
                 arguments:
                     - expr:service('App\\\Context\\\OrganisationContext').getOrganisation()
 

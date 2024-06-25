@@ -1,16 +1,14 @@
 <div class="eight wide column" id="info">
-{#{{ dump(catalogue.cover.path) }}#}
 
     {% set path = vich_uploader_asset(catalogue.cover, 'file')|imagine_filter('app_original') %}
 
-{#    {{ dump(catalogue.url) }}#}
     <a class="ui card " href="{{ catalogue.url }}">
         <div class="image">
-            <img src="{{ path }}">
+            <img src="{{ path }}" alt="{{ catalogue.title }}">
         </div>
         <div class="content">
             <a class="header">{{ catalogue.title }}</a>
         </div>
-{#    </a>#}
+    </a>
 
 </div>

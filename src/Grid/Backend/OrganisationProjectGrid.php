@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Grid\Backend;
 
-use App\Entity\Organisation\Task;
-use App\Grid\Action\TaskStatusTransitionsAction;
+use App\Entity\Organisation\Project;
+use App\Grid\Action\ShowTasksAction;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
 use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
 use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
@@ -13,29 +13,32 @@ use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\MainActionGroup;
 use Sylius\Bundle\GridBundle\Builder\Field\DateTimeField;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
-use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
 use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
 use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
 
-final class TaskGrid extends AbstractGrid implements ResourceAwareGridInterface
+final class OrganisationProjectGrid extends AbstractGrid implements ResourceAwareGridInterface
 {
     public static function getName(): string
     {
-        return 'app_backend_task';
+        return 'app_backend_organisation_project';
     }
 
     public function buildGrid(GridBuilderInterface $gridBuilder): void
     {
         $gridBuilder
-            ->setRepositoryMethod('findProjectTasks', [
-                '$projectId' => '$projectId',
+            ->setRepositoryMethod('findOrganisationProjects', [
+                '$organisationId' => '$organisationId',
             ])
             ->orderBy('name', 'asc')
             ->addField(
                 StringField::create('name')
                     ->setLabel('app.ui.name')
                     ->setSortable(true)
+            )
+            ->addField(
+                StringField::create('description')
+                    ->setLabel('app.ui.description')
             )
             ->addField(
                 DateTimeField::create('createdAt')
@@ -45,53 +48,25 @@ final class TaskGrid extends AbstractGrid implements ResourceAwareGridInterface
                 DateTimeField::create('updatedAt')
                     ->setLabel('app.ui.updated_at')
             )
-            ->addField(
-                StringField::create('description')
-                    ->setLabel('app.ui.description')
-            )
-            ->addField(
-                StringField::create('status')
-                    ->setPath('status.name')
-                    ->setLabel('app.ui.status')
-            )
-            ->addField(
-                StringField::create('assignee')
-                    ->setLabel('app.ui.assignee')
-            )
-            ->addField(
-                StringField::create('author')
-                    ->setLabel('app.ui.author')
-                    ->setPosition(2)
-            )
-            ->addField(
-                TwigField::create('timeSlots', 'backend/task/grids/fields/time_slot.html.twig')
-                    ->setLabel('app.ui.time_slots')
-            )
-            ->addField(
-                DateTimeField::create('completedAt')
-                    ->setLabel('app.ui.completed_at')
-            )
             ->addActionGroup(
                 MainActionGroup::create(
                     CreateAction::create([
                         'link' => [
-                            'route' => 'app_backend_project_task_create',
+                            'route' => 'app_backend_organisation_project_create',
                             'parameters' => [
-                                'projectId' => '$projectId',
                                 'organisationId' => '$organisationId',
                             ],
                         ],
-                    ]),
+                    ])
                 )
             )
             ->addActionGroup(
                 ItemActionGroup::create(
-                    TaskStatusTransitionsAction::create(),
+                    ShowTasksAction::create(),
                     UpdateAction::create([
                         'link' => [
-                            'route' => 'app_backend_project_task_update',
+                            'route' => 'app_backend_organisation_project_update',
                             'parameters' => [
-                                'projectId' => '$projectId',
                                 'organisationId' => '$organisationId',
                                 'id' => 'resource.id',
                             ],
@@ -99,8 +74,9 @@ final class TaskGrid extends AbstractGrid implements ResourceAwareGridInterface
                     ]),
                     DeleteAction::create([
                         'link' => [
+                            'route' => 'app_backend_organisation_project_delete',
                             'parameters' => [
-                                'projectId' => '$projectId',
+                                'organisationId' => '$organisationId',
                                 'id' => 'resource.id',
                             ],
                         ],
@@ -112,6 +88,6 @@ final class TaskGrid extends AbstractGrid implements ResourceAwareGridInterface
 
     public function getResourceClass(): string
     {
-        return Task::class;
+        return Project::class;
     }
 }

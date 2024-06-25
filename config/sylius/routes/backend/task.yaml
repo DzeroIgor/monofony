@@ -1,5 +1,20 @@
 app_backend_task_index:
-    path: /
+    path: /tasks
+    methods: [ GET ]
+    defaults:
+        _controller: app.controller.task::indexAction
+        _sylius:
+            section: backend
+            template: backend/crud/index.html.twig
+            grid: app_backend_task
+            vars:
+                breadcrumb: 'app.ui.projects'
+                templates:
+                    breadcrumb: backend/task/index/_breadcrumb.html.twig
+
+app_backend_project_task_index:
+    path: /organisations/{organisationId}/projects/{projectId}/tasks/
+    methods: [ GET ]
     defaults:
         _controller: app.controller.task::indexAction
         _sylius:
@@ -11,11 +26,12 @@ app_backend_task_index:
                 route:
                     parameters:
                         projectId: $projectId
+                        organisationId: $organisationId
                 templates:
                     breadcrumb: backend/task/index/_breadcrumb.html.twig
 
-app_backend_task_create:
-    path: /new
+app_backend_project_task_create:
+    path: /organisations/{organisationId}/projects/{projectId}/tasks/new
     methods: [ GET, POST ]
     defaults:
         _controller: app.controller.task::createAction
@@ -23,54 +39,65 @@ app_backend_task_create:
             section: backend
             template: backend/crud/create.html.twig
             redirect:
-                route: app_backend_task_index
-                parameters: { projectId: $projectId }
+                route: app_backend_project_task_index
+                parameters:
+                    projectId: $projectId
+                    organisationId: $organisationId
+            index:
+                route: app_backend_project_task_index
+                parameters:
+                    projectId: $projectId
+                    organisationId: $organisationId
             vars:
-                breadcrumb: 'app.ui.projects'
                 route:
+                    name: app_backend_project_task_create
                     parameters:
                         projectId: $projectId
+                        organisationId: $organisationId
+                breadcrumb: 'app.ui.projects'
                 templates:
                     breadcrumb: backend/task/index/_breadcrumb.html.twig
+                    form: backend/task/_form.html.twig
             factory:
                 method: createNewWithProject
                 arguments:
                     - expr:service('app.repository.project').find($projectId)
 
 
-app_backend_task_update:
-    path: /{id}/edit
+app_backend_project_task_update:
+    path: /projects/{projectId}/tasks/{id}/edit
     methods: [ GET, PUT ]
     defaults:
         _controller: app.controller.task::updateAction
         _sylius:
             section: backend
             template: backend/crud/update.html.twig
-            route:
-                parameters: { projectId: $projectId }
             redirect:
                 route: app_backend_task_index
-                parameters: { projectId: $projectId }
+                parameters:
+                    projectId: $projectId
+                    organisationId: $organisationId
             vars:
                 breadcrumb: 'app.ui.projects'
                 route:
+                    name: app_backend_project_task_update
                     parameters:
                         projectId: $projectId
-                        id: $id
+                        organisationId: $organisationId
                 templates:
                     breadcrumb: backend/task/update/_breadcrumb.html.twig
-#                    form: backend/task/_form.html.twig
+                    form: backend/task/_form.html.twig
 
 app_backend_task_delete:
-    path: /{id}
+    path: /projects/{projectId}/tasks/{id}
     methods: [ DELETE ]
     defaults:
         _controller: app.controller.task::deleteAction
         _sylius:
             section: backend
-            redirect: referer
             vars:
-                route:
+                redirect:
+                    route: app_backend_task_index
                     parameters:
                         organisationId: $organisationId
 

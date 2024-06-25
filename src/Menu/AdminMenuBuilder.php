@@ -88,6 +88,10 @@ final class AdminMenuBuilder implements AdminMenuBuilderInterface
         $catalogue->addChild('backend_catalogue', ['route' => 'app_backend_catalogue_index'])
             ->setLabel('app.ui.catalogue')
             ->setLabelAttribute('icon', 'book')
+            ->setExtra('routes', [
+                'app_backend_catalogue_index',
+                'app_backend_catalogue_show',
+            ])
         ;
     }
 
@@ -133,8 +137,8 @@ final class AdminMenuBuilder implements AdminMenuBuilderInterface
                 'app_backend_organisation_membership_create',
                 'app_backend_organisation_membership_index',
                 'app_backend_organisation_membership_update',
-                'app_backend_project_create',
-                'app_backend_project_index',
+                'app_backend_organisation_project_create',
+                'app_backend_organisation_project_index',
                 'app_backend_project_update',
                 'app_backend_task_create',
                 'app_backend_task_index',
@@ -142,12 +146,6 @@ final class AdminMenuBuilder implements AdminMenuBuilderInterface
 
             ])
         ;
-
-//        $organisation
-//            ->addChild('backend_time_slot', ['route' => 'app_backend_time_slot_index'])
-//            ->setLabel('app.ui.time_slot')
-//            ->setLabelAttribute('icon', 'clock')
-//        ;
     }
 
     private function addConfigurationSubMenu(ItemInterface $menu): void

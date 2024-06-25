@@ -27,13 +27,4 @@ class ProjectFactory implements FactoryInterface
 
         return $project;
     }
-    public function createNewOneWithOrganisation(?OrganisationInterface $organisation): Project
-    {
-        $project = $this->createNew();
-
-        $project->setOrganisation($organisation);
-
-        return $project;
-    }
-
 }

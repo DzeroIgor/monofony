@@ -10,6 +10,7 @@ use Sylius\Component\Customer\Model\CustomerInterface;
 
 class OrganisationRepository extends EntityRepository
 {
+    // function for displaying the organisations of a member in the grid
     public function findOrganisationsForMember(CustomerInterface $customer): QueryBuilder
     {
         $qb = $this->createQueryBuilder('o')

@@ -20,10 +20,13 @@
     <div class="ui divider"></div>
 
     <div class="ui small header">{{ 'app.ui.organisation_members'|trans }}</div>
-    <ol class="ui list">
+    <ul class="ui list">
         {% for member in organisation.members %}
             <li class="item">
-                {{ member.customer.firstName ~ member.customer.lastName }}
+                {{ member.customer.firstName ~ ' ' ~ member.customer.lastName }}
+                <br>
+                <br>
+                {{ 'app.ui.email'|trans ~ ': ' }}{{ member.customer.email }}
                 <br>
                 <br>
                 {{ 'app.ui.position'|trans ~ ': ' }}{{ member.position.name }}
@@ -33,6 +36,6 @@
             </li>
             <br>
         {% endfor %}
-    </ol>
+    </ul>
 
 {% endblock %}

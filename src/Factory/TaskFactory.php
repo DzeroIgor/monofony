@@ -23,7 +23,6 @@ class TaskFactory implements FactoryInterface
     public function createNewWithProject(?Project $project = null): Task
     {
         $task = $this->createNew();
-
         $task->setProject($project);
 
         return $task;

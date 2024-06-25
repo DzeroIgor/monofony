@@ -26,4 +26,8 @@ interface ProjectInterface extends ResourceInterface, CodeAwareInterface, TimeSt
     public function hasTask(?Task $task = null): bool;
 
     public function removeTask(?Task $task = null): void;
+
+    public function getOrganisation(): ?Organisation;
+
+    public function setOrganisation(?Organisation $organisation): void;
 }

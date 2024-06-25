@@ -1,5 +1,6 @@
 app_backend_project_index:
-    path: /
+    path: /projects
+    methods: [ GET ]
     defaults:
         _controller: app.controller.project::indexAction
         _sylius:
@@ -8,14 +9,28 @@ app_backend_project_index:
             grid: app_backend_project
             vars:
                 breadcrumb: 'app.ui.organisations'
+                templates:
+                    breadcrumb: backend/project/index/_breadcrumb.html.twig
+
+app_backend_organisation_project_index:
+    path: /organisations/{organisationId}/projects
+    methods: [ GET ]
+    defaults:
+        _controller: app.controller.project::indexAction
+        _sylius:
+            section: backend
+            template: backend/crud/index.html.twig
+            grid: app_backend_organisation_project
+            vars:
+                breadcrumb: 'app.ui.organisations'
                 route:
                     parameters:
                         organisationId: $organisationId
                 templates:
                     breadcrumb: backend/project/index/_breadcrumb.html.twig
 
-app_backend_project_create:
-    path: /new
+app_backend_organisation_project_create:
+    path: /organisations/{organisationId}/projects/new
     methods: [ GET, POST ]
     defaults:
         _controller: app.controller.project::createAction
@@ -23,11 +38,18 @@ app_backend_project_create:
             section: backend
             template: backend/crud/create.html.twig
             redirect:
-                route: app_backend_project_index
-                parameters: { organisationId: $organisationId }
+                route: app_backend_organisation_project_index
+                parameters:
+                    organisationId: $organisationId
+            index:
+                route: app_backend_organisation_project_index
+                parameters:
+                    organisationId: $organisationId
             vars:
                 breadcrumb: 'app.ui.organisations'
+
                 route:
+                    name: app_backend_organisation_project_create
                     parameters:
                         organisationId: $organisationId
                 templates:
@@ -37,8 +59,8 @@ app_backend_project_create:
                 arguments:
                     - expr:service('app.repository.organisation').find($organisationId)
 
-app_backend_project_update:
-    path: /{id}/edit
+app_backend_organisation_project_update:
+    path: /organisations/{organisationId}/projects/{id}/edit
     methods: [ GET, PUT ]
     defaults:
         _controller: app.controller.project::updateAction
@@ -46,26 +68,31 @@ app_backend_project_update:
             section: backend
             template: backend/crud/update.html.twig
             redirect:
-                route: app_backend_project_index
-                parameters: { organisationId: $organisationId }
+                route: app_backend_organisation_project_index
+                parameters:
+                    organisationId: $organisationId
             vars:
-                breadcrumb: 'app.ui.organisations'
                 templates:
                     breadcrumb: backend/project/update/_breadcrumb.html.twig
                 route:
+                    name: app_backend_organisation_project_update
                     parameters:
                         organisationId: $organisationId
                         id: $id
+                index:
+                    route: app_backend_organisation_project_index
+                    parameters:
+                        organisationId: $organisationId
+                breadcrumb: 'app.ui.organisations'
 
-app_backend_project_delete:
-    path: /{id}
-    methods: [ DELETE ]
+app_backend_organisation_project_delete:
+    path: /organisations/{organisationId}/projects/{id}
+    methods: [DELETE]
     defaults:
         _controller: app.controller.project::deleteAction
         _sylius:
             section: backend
-            redirect: referer
-            vars:
-                route:
-                    parameters:
-                        organisationId: $organisationId
+            redirect:
+                route: app_backend_organisation_project_index
+                parameters:
+                    organisationId: $organisationId

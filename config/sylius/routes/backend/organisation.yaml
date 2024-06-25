@@ -1,4 +1,4 @@
-sylius_backend_organisation:
+app_backend_organisation:
     resource: |
         section: backend
         alias: app.organisation
@@ -8,7 +8,7 @@ sylius_backend_organisation:
         redirect: index
         vars:
             all:
-                subheader: app.ui.manage_your_organisation
+                subheader: app.ui.manage_your_organisations
                 templates:
                     form: backend/organisation/_form.html.twig
             index:
@@ -24,6 +24,3 @@ app_backend_organisation_show:
             template: backend/organisation/show.html.twig
             permission: true
 
-app_backend_organisation_membership:
-    resource: "organisation_membership.yaml"
-    prefix: /organisations/{organisationId}/members/

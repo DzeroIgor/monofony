@@ -3,7 +3,6 @@ app_frontend_organisation:
         section: frontend
         alias: app.organisation
         templates: 'frontend/crud'
-        only: ['update', 'delete']
         grid: app_frontend_organisation
         redirect: index
         vars:

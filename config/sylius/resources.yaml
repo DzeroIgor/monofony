@@ -49,11 +49,12 @@ sylius_resource:
                 model: App\Entity\Organisation\Organisation
                 form: App\Form\Type\Organisation\OrganisationType
                 repository: App\Repository\OrganisationRepository
+
         app.organisation_membership:
             classes:
                 model: App\Entity\Organisation\OrganisationMembership
                 form: App\Form\Type\Organisation\OrganisationMembershipType
-                repository: App\Repository\OrganisationMembershipRepository
+                repository: App\Repository\Organisation\OrganisationMembershipRepository
         app.project:
             classes:
                 model: App\Entity\Organisation\Project

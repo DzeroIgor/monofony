@@ -11,12 +11,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class BookTranslationType extends AbstractResourceType
 {
-    public function __construct()
-    {
-        parent::__construct(BookTranslation::class, [
-        ]);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {
         $builder

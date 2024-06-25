@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form\Type\Organisation;
 
-use App\Context\CustomerContext;
 use App\Context\OrganisationContext;
 use App\Entity\Organisation\OrganisationMembership;
 use App\Entity\Organisation\Project;
-use App\Entity\Organisation\Task;
-use App\Repository\OrganisationMembershipRepository;
+use App\Repository\Organisation\OrganisationMembershipRepository;
 use App\Repository\ProjectRepository;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -20,11 +18,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 final class CustomerTaskType extends AbstractResourceType
 {
     public function __construct(
-        private readonly CustomerContext $customerContext,
         private readonly OrganisationContext $organisationContext,
+        protected array $validationGroups,
+        protected string $dataClass,
     ) {
-        parent::__construct(Task::class, [
-        ]);
+        parent::__construct($dataClass, $validationGroups);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options = []): void

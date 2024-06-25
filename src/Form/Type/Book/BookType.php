@@ -20,12 +20,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class BookType extends AbstractResourceType
 {
-    public function __construct()
-    {
-        parent::__construct(Book::class, [
-        ]);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {
         $builder

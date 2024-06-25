@@ -12,12 +12,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class TimeSlotType extends AbstractResourceType
 {
-    public function __construct()
-    {
-        parent::__construct(TimeSlot::class, [
-        ]);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {
         $builder

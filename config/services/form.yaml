@@ -1,0 +1,193 @@
+parameters:
+    sylius.form.type.admin_user.validation_groups: ["sylius"]
+    sylius.form.type.address.validation_groups: ["app"]
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Form\Extension\:
+        resource: '../../src/Form/Extension'
+
+    # ORGANISATION FORMS #
+    App\Form\Type\Organisation\OrganisationType:
+        arguments:
+            $validationGroups:
+                - 'app_organisation'
+            $dataClass: '%app.model.organisation.class%'
+        tags:
+            - { name: form.type }
+
+    # ORGANISATION MEMBERSHIP FORMS #
+    App\Form\Type\Organisation\OrganisationMembershipType:
+        arguments:
+            $validationGroups:
+                - 'app_organisation_membership'
+            $dataClass: '%app.model.organisation_membership.class%'
+        tags:
+            - { name: form.type }
+
+    # PROJECT FORMS #
+    App\Form\Type\Organisation\ProjectType:
+        arguments:
+            $validationGroups:
+                - 'app_project'
+            $dataClass: '%app.model.project.class%'
+        tags:
+            - { name: form.type }
+
+    # TASK FORMS #
+    App\Form\Type\Organisation\TaskType:
+        arguments:
+            $validationGroups:
+                - 'app_task'
+            $dataClass: '%app.model.task.class%'
+        tags:
+            - { name: form.type }
+
+    # CUSTOMER TASK FORMS #
+    App\Form\Type\Organisation\CustomerTaskType:
+        arguments:
+            $validationGroups:
+                - 'app_customer_task'
+            $dataClass: '%app.model.task.class%'
+            $organisationContext: '@App\Context\OrganisationContext'
+        tags:
+            - { name: form.type }
+
+    # TIME SLOT FORMS #
+    App\Form\Type\Organisation\TimeSlotType:
+        arguments:
+            $validationGroups:
+                - 'app_time_slot'
+            $dataClass: '%app.model.time_slot.class%'
+        tags:
+            - { name: form.type }
+
+    #-------------------------------------------------------#
+
+    # VEHICLE FORMS #
+    App\Form\Type\Vehicle\VehicleType:
+        arguments:
+            $validationGroups:
+                - 'admin'
+                - 'user'
+            $dataClass: '%app.model.vehicle.class%'
+        tags:
+            - { name: form.type }
+
+    # VEHICLE BRAND FORMS #
+    App\Form\Type\Vehicle\BrandType:
+        arguments:
+            $validationGroups:
+                - 'admin'
+                - 'user'
+            $dataClass: '%app.model.vehicle_brand.class%'
+        tags:
+            - { name: form.type }
+
+    # VEHICLE CATEGORY FORMS #
+    App\Form\Type\Vehicle\CategoryType:
+        arguments:
+            $validationGroups:
+                - 'app_vehicle_category'
+            $dataClass: '%app.model.vehicle_brand.class%'
+        tags:
+            - { name: form.type }
+
+    # VEHICLE MODEL FORMS #
+    App\Form\Type\Vehicle\ModelType:
+        arguments:
+            $validationGroups:
+                - 'app_vehicle_model'
+            $dataClass: '%app.model.vehicle_model.class%'
+        tags:
+            - { name: form.type }
+
+    #-------------------------------------------------------#
+
+    # BOOK FORMS #
+    App\Form\Type\Book\BookType:
+        arguments:
+            $validationGroups:
+                - 'app_book'
+            $dataClass: '%app.model.book.class%'
+        tags:
+            - { name: form.type }
+
+    # BOOK COVER FORMS #
+    App\Form\Type\Book\BookCoverType:
+        arguments:
+            $validationGroups:
+                - 'app_book_cover'
+            $dataClass: '%app.model.book_cover.class%'
+        tags:
+            - { name: form.type }
+
+    # BOOK TRANSLATION FORMS #
+    App\Form\Type\Book\BookTranslationType:
+        arguments:
+            $validationGroups:
+                - 'app_book_translation'
+            $dataClass: '%app.model.book_translation.class%'
+        tags:
+            - { name: form.type }
+
+    # BOOK CATEGORY FORMS #
+    App\Form\Type\Book\CategoryType:
+        arguments:
+            $validationGroups:
+                - 'app_book_category'
+            $dataClass: '%app.model.category.class%'
+        tags:
+            - { name: form.type }
+
+    #-------------------------------------------------------#
+
+    # ARTICLE FORMS #
+    App\Form\Type\Article\ArticleType:
+        arguments:
+            $validationGroups:
+                - 'app_article'
+            $dataClass: '%app.model.article.class%'
+        tags:
+            - { name: form.type }
+
+    # ARTICLE COMMENT FORMS #
+    App\Form\Type\Article\ArticleCommentType:
+        arguments:
+            $validationGroups:
+                - 'app_article_comment'
+            $dataClass: '%app.model.article.class%'
+        tags:
+            - { name: form.type }
+
+    # COMMENT FORMS #
+    App\Form\Type\Article\CommentType:
+        arguments:
+            $validationGroups:
+                - 'app_comment'
+            $dataClass: '%app.model.comment.class%'
+        tags:
+            - { name: form.type }
+
+    #-------------------------------------------------------#
+
+    # CATALOGUE FORMS #
+    App\Form\Type\Catalogue\CatalogueType:
+        arguments:
+            $validationGroups:
+                - 'app_catalogue'
+            $dataClass: '%app.model.catalogue.class%'
+        tags:
+            - { name: form.type }
+
+    # CATALOGUE COVER FORMS #
+    App\Form\Type\Catalogue\CatalogueCoverType:
+        arguments:
+            $validationGroups:
+                - 'app_catalogue_cover'
+            $dataClass: '%app.model.catalogue_cover.class%'
+        tags:
+            - { name: form.type }

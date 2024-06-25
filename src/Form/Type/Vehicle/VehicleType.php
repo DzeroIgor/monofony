@@ -27,14 +27,6 @@ use Symfony\Component\Form\FormInterface;
 
 final class VehicleType extends AbstractResourceType
 {
-    public function __construct()
-    {
-        parent::__construct(Vehicle::class, [
-            'admin',
-            'user',
-        ]);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {
         $builder

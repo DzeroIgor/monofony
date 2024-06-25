@@ -18,12 +18,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class CategoryType extends AbstractResourceType
 {
-    public function __construct()
-    {
-        parent::__construct(Category::class, [
-        ]);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {
         $builder

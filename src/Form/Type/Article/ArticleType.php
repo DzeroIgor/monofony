@@ -17,12 +17,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class ArticleType extends AbstractResourceType
 {
-    public function __construct() // (private readonly FactoryInterface $factory)
-    {
-        parent::__construct(Article::class, [
-        ]);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {
         $builder

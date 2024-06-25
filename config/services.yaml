@@ -20,7 +20,7 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Factory,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Entity,Factory,Form,Migrations,Tests,Kernel.php}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -56,4 +56,5 @@ services:
     App\Storage\OrganisationStorageInterface: '@App\Storage\OrganisationStorage'
 
 imports:
-    resource: "services/factory.yaml"
+    - { resource: services/factory.yaml }
+    - { resource: services/form.yaml }

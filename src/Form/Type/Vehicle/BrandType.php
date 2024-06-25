@@ -12,14 +12,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class BrandType extends AbstractResourceType
 {
-    public function __construct()
-    {
-        parent::__construct(Brand::class, [
-            'user',
-            'admin',
-        ]);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {
         $builder

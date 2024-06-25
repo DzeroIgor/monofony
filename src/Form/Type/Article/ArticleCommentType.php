@@ -12,12 +12,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class ArticleCommentType extends AbstractResourceType
 {
-    public function __construct()
-    {
-        parent::__construct(Article::class, [
-        ]);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {
         $builder

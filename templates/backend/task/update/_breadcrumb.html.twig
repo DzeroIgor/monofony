@@ -1,21 +1,32 @@
 {% import '@SyliusUi/Macro/breadcrumb.html.twig' as breadcrumb %}
 
 {% set index_url = path(
-    'app_backend_project_index',  {'organisationId': resource.project.organisation.id}
+    'app_backend_organisation_index'
 )
 %}
+
+{% set organisation = app_get_organisation(app.request.get('organisationId')) %}
+{% set project = app_get_project(app.request.get('projectId')) %}
+
+{% set project_url = path(
+        'app_backend_organisation_project_index', {'organisationId': organisation.id }
+        )
+        %}
 {% set task_url = path(
-    'app_backend_task_index', {'projectId': resource.project.id }
-)
+        'app_backend_project_task_index', {'organisationId': organisation.id, 'projectId': project.id }
+    )
 %}
 
 {% set breadcrumb = configuration.vars.breadcrumb|default(metadata.applicationName~'.ui.'~metadata.pluralName) %}
 
 {% set breadcrumbs = [
     { label: 'sylius.ui.administration'|trans, url: path('app_backend_dashboard') },
-    { label: breadcrumb|trans, url: index_url },
-    { label: resource.project.name, url: task_url },
-    { label: resource.name|default(resource.code|default(resource.id)) },
+    { label: 'app.ui.organisations'|trans, url: index_url },
+    { label: organisation.name, url: project_url },
+    { label: breadcrumb|trans, url: project_url },
+    { label: project.name|trans, url: task_url },
+    { label: 'app.ui.tasks'|trans, url: task_url },
+    { label: task.name },
     { label: 'sylius.ui.edit'|trans }
 ]
 %}

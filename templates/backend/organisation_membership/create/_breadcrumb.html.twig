@@ -1,29 +1,27 @@
 {% import '@SyliusUi/Macro/breadcrumb.html.twig' as breadcrumb %}
 
-{% set index_url = path(
-    'app_backend_organisation_index'
-)
-%}
-
 {% set organisation = app_get_organisation(app.request.get('organisationId')) %}
-
-{% set project_url = path(
-'app_backend_organisation_project_index', {'organisationId': organisation.id }
-)
-%}
-
-{% set project = app_get_project(app.request.get('projectId')) %}
+{% set index_url = path(
+        'app_backend_organisation_index',
+        )
+        %}
+{% set organisation_url = path(
+        'app_backend_organisation_membership_index', { 'organisationId': organisation.id }
+        ) %}
 
 {% set breadcrumb = configuration.vars.breadcrumb|default(metadata.applicationName~'.ui.'~metadata.pluralName) %}
+
 
 {% set breadcrumbs = [
     { label: 'sylius.ui.administration'|trans, url: path('app_backend_dashboard') },
     { label: 'app.ui.organisations'|trans, url: index_url },
-    { label: organisation.name, url: project_url },
-    { label: breadcrumb|trans, url: project_url },
-    { label: project.name|trans },
-    { label: 'app.ui.tasks'|trans }
+    { label: organisation.name, url: organisation_url },
+    { label: 'app.ui.organisation_memberships'|trans, url: organisation_url },
+    { label: 'sylius.ui.new'|trans }
 ]
 %}
 
 {{ breadcrumb.crumble(breadcrumbs) }}
+
+
+

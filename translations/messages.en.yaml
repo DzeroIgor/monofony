@@ -46,13 +46,16 @@ app:
 
         organisation: Organisation
         organisations: Organisations
+        edit_organisation: Edit Organisation
         manage_your_organisations: Manage Your Organisations
-
         organisation_membership: Organisation Membership
+
+        edit_organisation_membership: Edit Member
         organisation_memberships: Organisation Memberships
         organisation_members: Organisation Members
         organisation_projects: Organisation Projects
-        manage_your_organisation_membership: Manage Your Organisation Membership
+        new_organisation_membership: New Organisation Membership
+        manage_your_organisation_memberships: Manage Your Organisation Memberships
         customer: Customer
         position: Position
         role: Role
@@ -61,7 +64,10 @@ app:
 
         project: Project
         projects: Projects
-        manage_your_project: Manage Your Project
+        manage_your_projects: Manage Your Projects
+        edit_your_project: Edit Your Project
+        edit_project: Edit Project
+        new_project: New Project
         description: Description
         created_at: Created At
         updated_at: Updated At
@@ -72,12 +78,13 @@ app:
 
         task: Task
         tasks: Tasks
-        manage_your_task: Manage Your Task
+        manage_your_tasks: Manage Your Tasks
+        edit_task: Edit Task
+        edit_your_task: Edit Your Task
         assignee: Assignee
 
         time_slot: Time Slot
         time_slots: Time Slots
-        manage_your_time_slot: Manage Your Time Slot
 
         catalogue: Catalogue
         catalogues: Catalogues

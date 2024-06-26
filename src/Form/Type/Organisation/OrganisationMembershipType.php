@@ -19,7 +19,7 @@ final class OrganisationMembershipType extends AbstractResourceType
     {
         $builder
             ->add('customer', EntityType::class, [
-                'label' => 'sylius.form.customer',
+                'label' => 'sylius.ui.customer',
                 'placeholder' => 'sylius.ui.select',
                 'class' => Customer::class,
             ])

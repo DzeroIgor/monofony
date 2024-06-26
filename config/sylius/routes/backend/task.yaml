@@ -22,6 +22,7 @@ app_backend_project_task_index:
             template: backend/crud/index.html.twig
             grid: app_backend_task
             vars:
+                subheader: app.ui.manage_your_tasks
                 breadcrumb: 'app.ui.projects'
                 route:
                     parameters:
@@ -65,7 +66,7 @@ app_backend_project_task_create:
 
 
 app_backend_project_task_update:
-    path: /projects/{projectId}/tasks/{id}/edit
+    path: /organisations/{organisationId}/projects/{projectId}/tasks/{id}/edit
     methods: [ GET, PUT ]
     defaults:
         _controller: app.controller.task::updateAction
@@ -73,33 +74,41 @@ app_backend_project_task_update:
             section: backend
             template: backend/crud/update.html.twig
             redirect:
-                route: app_backend_task_index
+                route: app_backend_project_task_index
                 parameters:
-                    projectId: $projectId
                     organisationId: $organisationId
+                    projectId: $projectId
             vars:
+                subheader: app.ui.edit_your_task
                 breadcrumb: 'app.ui.projects'
                 route:
                     name: app_backend_project_task_update
                     parameters:
-                        projectId: $projectId
                         organisationId: $organisationId
+                        projectId: $projectId
+                        id: $id
                 templates:
                     breadcrumb: backend/task/update/_breadcrumb.html.twig
                     form: backend/task/_form.html.twig
 
-app_backend_task_delete:
-    path: /projects/{projectId}/tasks/{id}
+app_backend_project_task_delete:
+    path: /organisations/{organisationId}/projects/{projectId}/tasks/{id}
     methods: [ DELETE ]
     defaults:
         _controller: app.controller.task::deleteAction
         _sylius:
             section: backend
+            redirect:
+                route: app_backend_project_task_index
+                parameters:
+                    organisationId: $organisationId
             vars:
-                redirect:
-                    route: app_backend_task_index
+                route:
+                    name: app_backend_project_task_delete
                     parameters:
                         organisationId: $organisationId
+                        projectId: $projectId
+                        id: $id
 
 # workflow routes start
 app_backend_task_transition_create:

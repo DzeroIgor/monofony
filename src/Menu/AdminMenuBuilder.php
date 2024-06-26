@@ -137,12 +137,13 @@ final class AdminMenuBuilder implements AdminMenuBuilderInterface
                 'app_backend_organisation_membership_create',
                 'app_backend_organisation_membership_index',
                 'app_backend_organisation_membership_update',
-                'app_backend_organisation_project_create',
                 'app_backend_organisation_project_index',
-                'app_backend_project_update',
-                'app_backend_task_create',
+                'app_backend_organisation_project_create',
+                'app_backend_organisation_project_update',
                 'app_backend_task_index',
-                'app_backend_task_update',
+                'app_backend_project_task_index',
+                'app_backend_project_task_create',
+                'app_backend_project_task_update',
 
             ])
         ;

@@ -99,7 +99,9 @@ final class TaskGrid extends AbstractGrid implements ResourceAwareGridInterface
                     ]),
                     DeleteAction::create([
                         'link' => [
+                            'route' => 'app_backend_project_task_delete',
                             'parameters' => [
+                                'organisationId' => '$organisationId',
                                 'projectId' => '$projectId',
                                 'id' => 'resource.id',
                             ],

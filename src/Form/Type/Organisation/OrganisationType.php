@@ -15,10 +15,10 @@ final class OrganisationType extends AbstractResourceType
     {
         $builder
             ->add('enabled', CheckboxType::class, [
-                'label' => 'sylius.form.enabled',
+                'label' => 'sylius.ui.enabled',
             ])
             ->add('name', TextType::class, [
-                'label' => 'sylius.form.name',
+                'label' => 'sylius.ui.name',
             ])
         ;
     }

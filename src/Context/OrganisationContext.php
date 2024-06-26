@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Context;
 
 use App\Entity\Organisation\OrganisationInterface;
-use App\Repository\OrganisationRepository;
+use App\Repository\Organisation\OrganisationRepository;
 use App\Storage\OrganisationStorageInterface;
 
 class OrganisationContext

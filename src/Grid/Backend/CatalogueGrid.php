@@ -29,7 +29,6 @@ final class CatalogueGrid extends AbstractGrid implements ResourceAwareGridInter
     public function buildGrid(GridBuilderInterface $gridBuilder): void
     {
         $gridBuilder
-//            ->setRepositoryMethod('createListQueryBuilder', [$this->localeContext->getLocaleCode()])
             ->orderBy('title', 'asc')
             ->addField(
                 StringField::create('title')
@@ -39,6 +38,10 @@ final class CatalogueGrid extends AbstractGrid implements ResourceAwareGridInter
             ->addField(
                 StringField::create('url')
                     ->setLabel('app.ui.url')
+            )
+            ->addField(
+                StringField::create('code')
+                    ->setLabel('app.ui.code')
             )
             ->addField(
                 TwigField::create('cover', 'backend/catalogue/fields/_cover.html.twig')

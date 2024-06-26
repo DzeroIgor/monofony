@@ -2,16 +2,18 @@
 
 namespace App\Entity\Catalogue;
 
+use App\Entity\CodeAwareTrait;
 use App\Entity\IdentifiableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
-
 
 #[ORM\Entity]
 #[ORM\Table(name: 'app_catalogue')]
 class Catalogue implements ResourceInterface, CatalogueInterface
 {
     use IdentifiableTrait;
+
+    use CodeAwareTrait;
 
     #[ORM\Column(type: 'string')]
     private ?string $title = null;
@@ -21,6 +23,11 @@ class Catalogue implements ResourceInterface, CatalogueInterface
 
     #[ORM\OneToOne(targetEntity: CatalogueCover::class, cascade: ['persist'])]
     private ?CatalogueCover $cover = null;
+
+    public function __construct()
+    {
+        $this->initializeCode();
+    }
 
     public function getTitle(): ?string
     {
@@ -51,5 +58,4 @@ class Catalogue implements ResourceInterface, CatalogueInterface
     {
         $this->cover = $cover;
     }
-
 }

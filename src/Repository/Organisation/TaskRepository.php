@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace App\Repository\Organisation;
 
 use App\Entity\Organisation\OrganisationInterface;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Customer\Model\CustomerInterface;
 
-class TaskRepository extends EntityRepository
+class TaskRepository extends EntityRepository implements TaskRepositoryInterface
 {
     // function for displaying the tasks of a project in the Task grid - backend
     public function findProjectTasks($projectId): QueryBuilder

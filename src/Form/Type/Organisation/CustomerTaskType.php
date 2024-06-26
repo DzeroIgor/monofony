@@ -8,7 +8,7 @@ use App\Context\OrganisationContext;
 use App\Entity\Organisation\OrganisationMembership;
 use App\Entity\Organisation\Project;
 use App\Repository\Organisation\OrganisationMembershipRepository;
-use App\Repository\ProjectRepository;
+use App\Repository\Organisation\ProjectRepository;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

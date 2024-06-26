@@ -48,7 +48,7 @@ sylius_resource:
             classes:
                 model: App\Entity\Organisation\Organisation
                 form: App\Form\Type\Organisation\OrganisationType
-                repository: App\Repository\OrganisationRepository
+                repository: App\Repository\Organisation\OrganisationRepository
 
         app.organisation_membership:
             classes:
@@ -59,12 +59,12 @@ sylius_resource:
             classes:
                 model: App\Entity\Organisation\Project
                 form: App\Form\Type\Organisation\ProjectType
-                repository: App\Repository\ProjectRepository
+                repository: App\Repository\Organisation\ProjectRepository
         app.task:
             classes:
                 model: App\Entity\Organisation\Task
                 form: App\Form\Type\Organisation\TaskType
-                repository: App\Repository\TaskRepository
+                repository: App\Repository\Organisation\TaskRepository
         app.time_slot:
             classes:
                 model: App\Entity\Organisation\TimeSlot

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace App\Repository\Organisation;
 
 use App\Entity\Organisation\OrganisationInterface;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
-class ProjectRepository extends EntityRepository
+class ProjectRepository extends EntityRepository implements ProjectRepositoryInterface
 {
     // function for displaying the projects of an organisation in the Project grid - backend
     public function findOrganisationProjects($organisationId): QueryBuilder

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace App\Repository\Organisation;
 
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Customer\Model\CustomerInterface;
 
-class OrganisationRepository extends EntityRepository
+class OrganisationRepository extends EntityRepository implements OrganisationRepositoryInterface
 {
     // function for displaying the organisations of a member in the grid
     public function findOrganisationsForMember(CustomerInterface $customer): QueryBuilder

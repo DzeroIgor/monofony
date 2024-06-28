@@ -10,7 +10,7 @@ trait ModelsAwareTrait
 {
     protected Collection $models;
 
-    public function initializeModelsCollection(): void
+    public function initializeModelCollection(): void
     {
         $this->models = new ArrayCollection();
     }

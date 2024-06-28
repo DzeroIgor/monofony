@@ -2,7 +2,7 @@
 
 namespace App\Entity\Article;
 
-use App\Entity\IdentifiableTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

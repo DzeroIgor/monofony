@@ -3,7 +3,7 @@
 namespace App\Workflow\Guard;
 
 use App\Context\CustomerContext;
-use App\Entity\Organisation\Task;
+use App\Entity\Task\Task;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Workflow\Event\GuardEvent;
 

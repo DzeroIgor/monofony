@@ -1,0 +1,9 @@
+App\Entity\Project\Project:
+    attributes:
+        id:
+            groups:
+                - 'Autocomplete'
+
+        name:
+            groups:
+                - 'Autocomplete'

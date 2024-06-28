@@ -19,6 +19,23 @@ class ProjectRepository extends EntityRepository implements ProjectRepositoryInt
         ;
     }
 
+    public function findOrganisationTaskProjects(?string $phrase = null, ?string $organisationId = null, ?int $limit = 100): array
+    {
+        $qb = $this->createQueryBuilder('o');
+
+        if (null !== $organisationId) {
+            $qb
+                ->andWhere('o.organisation = :organisationId')
+                ->setParameter('organisationId', $organisationId)
+            ;
+        }
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // function for displaying the projects of a logged user in the Project grid - frontend
     public function findProjectForMember(OrganisationInterface $organisation): QueryBuilder
     {

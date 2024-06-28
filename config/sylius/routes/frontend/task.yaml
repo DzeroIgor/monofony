@@ -8,9 +8,6 @@ app_frontend_task_index:
             grid: app_frontend_task
 #            vars:
 #                breadcrumb: 'app.ui.projects'
-#                route:
-#                    parameters:
-#                        projectId: $projectId
 #                templates:
 #                    breadcrumb: frontend/task/index/_breadcrumb.html.twig
 
@@ -29,18 +26,20 @@ app_frontend_task_create:
     defaults:
         _controller: app.controller.task::createAction
         _sylius:
-            form: App\Form\Type\Organisation\CustomerTaskType
+            form: App\Form\Type\Task\CustomerTaskType
             section: frontend
             template: frontend/crud/create.html.twig
             redirect:
                 route: app_frontend_task_index
-#            vars:
+#                parameters:
+#                    id: $id
+            vars:
 #                breadcrumb: 'app.ui.projects'
-#                route:
-#                    parameters:
-#                        projectId: $projectId
-#                templates:
+                route:
+                    name: app_frontend_task_create
+                templates:
 #                    breadcrumb: frontend/task/index/_breadcrumb.html.twig
+                    form: frontend/task/_form.html.twig
             factory:
                 method: createNewWithAuthor
                 arguments:
@@ -56,19 +55,18 @@ app_frontend_task_update:
         _sylius:
             section: frontend
             template: frontend/crud/update.html.twig
-#            route:
-#                parameters: { projectId: $projectId }
+            form: App\Form\Type\Task\CustomerTaskType
             redirect:
                 route: app_frontend_task_index
-#            vars:
-#                breadcrumb: 'app.ui.projects'
-#                route:
-#                    parameters:
-#                        projectId: $projectId
-#                        id: $id
-#                templates:
+            vars:
+                breadcrumb: 'app.ui.projects'
+                route:
+                    parameters:
+                        projectId: $projectId
+                        id: $id
+                templates:
 #                    breadcrumb: frontend/task/update/_breadcrumb.html.twig
-#                    form: frontend/task/_form.html.twig
+                    form: frontend/task/_form.html.twig
 
 app_frontend_task_delete:
     path: /{id}
@@ -78,10 +76,6 @@ app_frontend_task_delete:
         _sylius:
             section: frontend
             redirect: referer
-#            vars:
-#                route:
-#                    parameters:
-#                        organisationId: $organisationId
 
 # workflow routes start
 app_frontend_task_transition_create:

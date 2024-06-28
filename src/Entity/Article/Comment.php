@@ -3,7 +3,7 @@
 namespace App\Entity\Article;
 
 use App\Entity\Customer\Customer;
-use App\Entity\IdentifiableTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;

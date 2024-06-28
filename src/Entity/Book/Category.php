@@ -2,9 +2,9 @@
 
 namespace App\Entity\Book;
 
-use App\Entity\CodeAwareTrait;
-use App\Entity\IdentifiableTrait;
-use App\Entity\ToggleableTrait;
+use App\Entity\Traits\CodeAwareTrait;
+use App\Entity\Traits\IdentifiableTrait;
+use App\Entity\Traits\ToggleableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;

@@ -29,7 +29,7 @@ services:
             - { name: form.type }
 
     # PROJECT FORMS #
-    App\Form\Type\Organisation\ProjectType:
+    App\Form\Type\Project\ProjectType:
         arguments:
             $validationGroups:
                 - 'app_project'
@@ -38,7 +38,7 @@ services:
             - { name: form.type }
 
     # TASK FORMS #
-    App\Form\Type\Organisation\TaskType:
+    App\Form\Type\Task\TaskType:
         arguments:
             $validationGroups:
                 - 'app_task'
@@ -47,7 +47,7 @@ services:
             - { name: form.type }
 
     # CUSTOMER TASK FORMS #
-    App\Form\Type\Organisation\CustomerTaskType:
+    App\Form\Type\Task\CustomerTaskType:
         arguments:
             $validationGroups:
                 - 'app_customer_task'
@@ -57,7 +57,7 @@ services:
             - { name: form.type }
 
     # TIME SLOT FORMS #
-    App\Form\Type\Organisation\TimeSlotType:
+    App\Form\Type\Task\TimeSlotType:
         arguments:
             $validationGroups:
                 - 'app_time_slot'

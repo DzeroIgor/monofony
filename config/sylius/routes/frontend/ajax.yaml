@@ -1,0 +1,7 @@
+sylius_frontend_ajax_member:
+    resource: ajax/member.yaml
+    prefix: /members
+
+sylius_frontend_ajax_project:
+    resource: ajax/project.yaml
+    prefix: /projects

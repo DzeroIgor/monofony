@@ -30,7 +30,7 @@ framework:
                 type: 'method'
                 property: 'stateAsString'
             supports:
-                - App\Entity\Organisation\Task
+                - App\Entity\Task\Task
             initial_marking: new
             places:
                 - new

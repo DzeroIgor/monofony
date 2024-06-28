@@ -2,7 +2,7 @@
 
 namespace App\Entity\Vehicle;
 
-use App\Entity\ToggleableInterface;
+use App\Entity\Traits\ToggleableInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 interface VehicleInterface extends ResourceInterface, ToggleableInterface

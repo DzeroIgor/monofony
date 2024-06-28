@@ -4,29 +4,48 @@ declare(strict_types=1);
 
 namespace App\Entity\Organisation;
 
-use App\Entity\Customer\Customer;
-use App\Entity\IdentifiableTrait;
-use App\Entity\TimeStampTrait;
-use App\Entity\ToggleableTrait;
+use App\Entity\Customer\Traits\CustomerAwareTrait;
+use App\Entity\Organisation\Traits\OrganisationAwareTrait;
+use App\Entity\Traits\IdentifiableTrait;
+use App\Entity\Traits\TimeStampTrait;
+use App\Entity\Traits\ToggleableTrait;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\AssociationOverride;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Sylius\Component\Customer\Model\CustomerInterface;
 
 #[ORM\Entity]
+#[ORM\AssociationOverrides([
+    new AssociationOverride(
+        name: 'customer',
+        joinColumns: new JoinColumn(
+            name: 'customer_id',
+            referencedColumnName: 'id',
+            nullable: true,
+            onDelete: 'CASCADE'
+        ),
+        inversedBy: 'members'
+    ),
+    new AssociationOverride(
+        name: 'organisation',
+        joinColumns: new JoinColumn(
+            name: 'organisation_id',
+            referencedColumnName: 'id',
+            nullable: true,
+            onDelete: 'CASCADE'
+        ),
+        inversedBy: 'members'
+    ),
+])]
 #[ORM\Table(name: 'app_organisation_membership')]
 class OrganisationMembership implements OrganisationMembershipInterface
 {
+    use OrganisationAwareTrait;
+    use CustomerAwareTrait;
     use IdentifiableTrait;
-
     use ToggleableTrait;
-
     use TimeStampTrait;
-
-    #[ORM\ManyToOne(targetEntity: Organisation::class, inversedBy: 'members')]
-    private ?Organisation $organisation = null;
-
-    #[ORM\ManyToOne(targetEntity: Customer::class, inversedBy: 'members')]
-    private ?Customer $customer = null;
 
     #[ORM\Column(type: 'string', enumType: Position::class)]
     private ?Position $position = Position::TeamLeader;
@@ -40,30 +59,19 @@ class OrganisationMembership implements OrganisationMembershipInterface
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $email = null;
 
-     #[ORM\Column(type: 'string', nullable: true)]
+    #[ORM\Column(type: 'string', nullable: true)]
     private ?string $emailVerificationToken = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $verified = null;
 
-    public function getOrganisation(): ?Organisation
+    public function __toString(): string
     {
-        return $this->organisation;
-    }
+        if (null !== $this->customer) {
+            return $this->customer->getEmail();
+        }
 
-    public function setOrganisation(?Organisation $organisation): void
-    {
-        $this->organisation = $organisation;
-    }
-
-    public function getCustomer(): ?Customer
-    {
-        return $this->customer;
-    }
-
-    public function setCustomer(?Customer $customer): void
-    {
-        $this->customer = $customer;
+        return $this->email;
     }
 
     public function getPosition(): ?Position
@@ -129,15 +137,6 @@ class OrganisationMembership implements OrganisationMembershipInterface
     public function isOwner(CustomerInterface $customer): bool
     {
         return $this->getCustomer() === $customer && $this->role->isOwner();
-    }
-
-    public function __toString(): string
-    {
-        if (null !== $this->customer) {
-            return $this->customer->getEmail();
-        }
-
-        return $this->email;
     }
 
     public function getName(): string

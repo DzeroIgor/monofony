@@ -2,8 +2,8 @@
 
 namespace App\Entity\Vehicle;
 
-use App\Entity\IdentifiableTrait;
 use App\Entity\ModelsAwareTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -24,7 +24,7 @@ class Brand implements ResourceInterface
 
     public function __construct()
     {
-        $this->initializeModelsCollection();
+        $this->initializeModelCollection();
     }
 
     public function getName(): ?string

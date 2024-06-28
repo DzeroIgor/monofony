@@ -3,8 +3,8 @@
 namespace App\Factory;
 
 use App\Entity\Organisation\OrganisationInterface;
-use App\Entity\Organisation\Project;
-use App\Entity\Organisation\Task;
+use App\Entity\Project\Project;
+use App\Entity\Task\Task;
 use Sylius\Component\Customer\Model\CustomerInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 

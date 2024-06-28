@@ -2,10 +2,9 @@
 
 namespace App\Entity\Vehicle;
 
-use App\Entity\IdentifiableTrait;
-use App\Entity\ToggleableTrait;
+use App\Entity\Traits\IdentifiableTrait;
+use App\Entity\Traits\ToggleableTrait;
 use Doctrine\ORM\Mapping as ORM;
-use Sylius\Component\Resource\Model\ResourceInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'app_vehicle')]

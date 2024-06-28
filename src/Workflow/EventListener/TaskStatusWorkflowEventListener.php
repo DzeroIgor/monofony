@@ -2,7 +2,7 @@
 
 namespace App\Workflow\EventListener;
 
-use App\Entity\Organisation\Task;
+use App\Entity\Task\Task;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Workflow\Event\TransitionEvent;
 

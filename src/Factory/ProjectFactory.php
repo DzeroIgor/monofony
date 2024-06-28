@@ -3,8 +3,7 @@
 namespace App\Factory;
 
 use App\Entity\Organisation\Organisation;
-use App\Entity\Organisation\OrganisationInterface;
-use App\Entity\Organisation\Project;
+use App\Entity\Project\Project;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
 class ProjectFactory implements FactoryInterface

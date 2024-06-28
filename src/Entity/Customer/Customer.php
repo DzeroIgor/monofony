@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\Entity\Customer;
 
-use App\Entity\MembersAwareTrait;
 use App\Entity\Organisation\Organisation;
 use App\Entity\Organisation\OrganisationMembership;
+use App\Entity\Organisation\Traits\OrganisationMembershipsAwareTrait;
 use App\Entity\User\AppUser;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Monofony\Contracts\Core\Model\Customer\CustomerInterface;
 use Monofony\Contracts\Core\Model\User\AppUserInterface;
 use Sylius\Component\Customer\Model\Customer as BaseCustomer;
 use Sylius\Component\User\Model\UserInterface;
@@ -21,7 +20,7 @@ use Webmozart\Assert\Assert;
 #[ORM\Table(name: 'sylius_customer')]
 class Customer extends BaseCustomer implements CustomerInterface
 {
-    use MembersAwareTrait;
+    use OrganisationMembershipsAwareTrait;
 
     #[ORM\OneToOne(mappedBy: 'customer', targetEntity: AppUser::class, cascade: ['persist'])]
     #[Valid]
@@ -34,7 +33,7 @@ class Customer extends BaseCustomer implements CustomerInterface
     {
         parent::__construct();
 
-        $this->initializeMembersCollection();;
+        $this->initializeMemberCollection();
     }
 
     /**

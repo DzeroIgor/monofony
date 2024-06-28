@@ -102,6 +102,7 @@ app_backend_project_task_delete:
                 route: app_backend_project_task_index
                 parameters:
                     organisationId: $organisationId
+                    projectId: $projectId
             vars:
                 route:
                     name: app_backend_project_task_delete

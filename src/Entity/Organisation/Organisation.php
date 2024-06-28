@@ -2,12 +2,13 @@
 
 namespace App\Entity\Organisation;
 
-use App\Entity\CodeAwareTrait;
-use App\Entity\IdentifiableTrait;
-use App\Entity\MembersAwareTrait;
-use App\Entity\ProjectsAwareTrait;
-use App\Entity\TimeStampTrait;
-use App\Entity\ToggleableTrait;
+use App\Entity\Organisation\Traits\OrganisationMembershipsAwareTrait;
+use App\Entity\Project\ProjectInterface;
+use App\Entity\Project\Traits\ProjectsAwareTrait;
+use App\Entity\Traits\CodeAwareTrait;
+use App\Entity\Traits\IdentifiableTrait;
+use App\Entity\Traits\TimeStampTrait;
+use App\Entity\Traits\ToggleableTrait;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Customer\Model\CustomerInterface;
@@ -16,31 +17,26 @@ use Sylius\Component\Customer\Model\CustomerInterface;
 #[ORM\Table(name: 'app_organisation')]
 class Organisation implements OrganisationInterface
 {
+    use OrganisationMembershipsAwareTrait;
+    use ProjectsAwareTrait;
     use IdentifiableTrait;
-
     use CodeAwareTrait;
-
     use ToggleableTrait;
-
     use TimeStampTrait;
 
-    use ProjectsAwareTrait;
+    #[ORM\OneToMany(mappedBy: 'organisation', targetEntity: ProjectInterface::class, cascade: ['all'])]
+    protected Collection $projects;
 
-    use MembersAwareTrait;
+    #[ORM\OneToMany(mappedBy: 'organisation', targetEntity: OrganisationMembershipInterface::class, cascade: ['all'])]
+    protected Collection $members;
 
     #[ORM\Column(type: 'string')]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'organisation', targetEntity: Project::class, cascade: ['all'])]
-    protected Collection $projects;
-
-    #[ORM\OneToMany(mappedBy: 'organisation', targetEntity: OrganisationMembership::class, cascade: ['all'])]
-    protected Collection $members;
-
     public function __construct()
     {
         $this->initializeProjectsCollection();
-        $this->initializeMembersCollection();
+        $this->initializeMemberCollection();
         $this->initializeCode();
     }
 
@@ -66,7 +62,7 @@ class Organisation implements OrganisationInterface
         return false;
     }
 
-    public function getCustomerMember(?CustomerInterface $customer): ?OrganisationMembership
+    public function getCustomerMember(?CustomerInterface $customer): ?OrganisationMembershipInterface
     {
         foreach ($this->getMembers() as $member) {
             if ($member->getCustomer() === $customer) {

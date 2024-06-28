@@ -1,0 +1,28 @@
+app_frontend_ajax_project_by_id:
+    path: /leaf
+    methods: [GET]
+    defaults:
+        _controller: app.controller.project::indexAction
+        _format: json
+        _sylius:
+            serialization_groups: [Autocomplete]
+            permission: true
+            repository:
+                method: findBy
+                arguments: [id: $id]
+
+app_frontend_ajax_project_by_name_phrase:
+    path: /search
+    methods: [GET]
+    defaults:
+        _controller: app.controller.project::indexAction
+        _format: json
+        _sylius:
+            serialization_groups: [Autocomplete]
+            permission: true
+            repository:
+                method: findOrganisationTaskProjects
+                arguments:
+                    phrase: expr:service('request_stack').getCurrentRequest().query.get('phrase', '')
+                    organisationId: $organisationId
+                    limit: 25

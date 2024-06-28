@@ -4,22 +4,20 @@ declare(strict_types=1);
 
 namespace App\Entity\Organisation;
 
-use App\Entity\Customer\Customer;
-use App\Entity\TimeStampInterface;
-use App\Entity\ToggleableInterface;
+use App\Entity\Customer\Traits\CustomerAwareInterface;
+use App\Entity\Organisation\Traits\OrganisationAwareInterface;
+use App\Entity\Traits\TimeStampInterface;
+use App\Entity\Traits\ToggleableInterface;
 use Sylius\Component\Customer\Model\CustomerInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface OrganisationMembershipInterface extends ResourceInterface, ToggleableInterface, TimeStampInterface
+interface OrganisationMembershipInterface extends
+    OrganisationAwareInterface,
+    CustomerAwareInterface,
+    ResourceInterface,
+    ToggleableInterface,
+    TimeStampInterface
 {
-    public function getOrganisation(): ?Organisation;
-
-    public function setOrganisation(?Organisation $organisation): void;
-
-    public function getCustomer(): ?Customer;
-
-    public function setCustomer(?Customer $customer): void;
-
     public function getPosition(): ?Position;
 
     public function setPosition(?Position $position): void;
@@ -46,4 +44,5 @@ interface OrganisationMembershipInterface extends ResourceInterface, ToggleableI
 
     public function isOwner(CustomerInterface $customer): bool;
 
+    public function getName(): string;
 }

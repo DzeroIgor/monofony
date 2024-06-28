@@ -2,9 +2,8 @@
 
 namespace App\Entity\Vehicle;
 
-use App\Entity\IdentifiableTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\String_;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 #[ORM\Entity]

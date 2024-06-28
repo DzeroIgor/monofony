@@ -1,3 +1,7 @@
+app_frontend_ajax:
+  resource: "ajax.yaml"
+  prefix: /ajax
+
 app_account:
   resource: "account.yaml"
   prefix: "account"

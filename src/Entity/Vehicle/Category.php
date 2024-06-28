@@ -2,7 +2,7 @@
 
 namespace App\Entity\Vehicle;
 
-use App\Entity\IdentifiableTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
 

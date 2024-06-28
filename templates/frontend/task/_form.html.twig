@@ -1,0 +1,19 @@
+{% set organisation = app_get_current_organisation() %}
+
+{{ form_row(form.name) }}
+
+{{ form_row(form.description) }}
+
+{{ form_row(form.assignee, {
+    'remote_url': path('app_frontend_ajax_member_by_name_phrase', {'organisationId': organisation.id|default(null) }),
+    'load_edit_url': path('app_frontend_ajax_member_by_id')}
+) }}
+
+{{ form_row(form.project, {
+    'remote_url': path('app_frontend_ajax_project_by_name_phrase', {'organisationId': organisation.id|default(null) }),
+    'load_edit_url': path('app_frontend_ajax_project_by_id')}
+) }}
+
+{{ form_row(form.timeSlots) }}
+
+

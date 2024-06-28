@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Book;
 
-use App\Entity\IdentifiableTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 use Sylius\Component\Resource\Model\ResourceInterface;

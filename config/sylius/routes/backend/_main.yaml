@@ -48,7 +48,7 @@ app_backend_vehicle_category:
 app_backend_vehicle_brand:
     resource: "vehicle_brand.yaml"
 
-    #    organisation routs
+#    organisation routs
 app_backend_organisation:
     resource: "organisation.yaml"
 

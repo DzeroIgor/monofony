@@ -8,7 +8,6 @@ use App\Entity\Organisation\OrganisationMembershipInterface;
 use App\Form\Type\Customer\CustomerRegistrationType;
 use App\Repository\Organisation\OrganisationMembershipRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Sylius\Bundle\ResourceBundle\Controller\StateMachineInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -42,6 +41,25 @@ class JoinOrganisationAction
             throw new \InvalidArgumentException('invalid token');
         }
 
+        $customer = $member->getCustomer();
+
+        if (null !== $customer) {
+            $this->registry->get($member, 'app_organisation_membership')->apply($member, 'accept_membership');
+
+            $member->getCustomer()->getUser()->isVerified(true);
+            $member->getCustomer()->getUser()->setVerifiedAt(new \DateTime());
+            $member->setEmailVerificationToken(null);
+            $member->setVerified(new \DateTime());
+
+
+            $this->entityManager->persist($customer);
+            $this->entityManager->flush();
+
+            $this->security->login($customer->getUser(), 'form_login', 'app');
+
+            return new RedirectResponse($this->router->generate('sylius_frontend_account_dashboard'));
+        }
+
         $customer = $this->customerFactory->createNew();
         $customer->setEmail($member->getEmail());
         $customer->setEmailCanonical($member->getEmail());
@@ -54,7 +72,6 @@ class JoinOrganisationAction
             $member->setCustomer($customer);
             $member->setEmailVerificationToken(null);
             $member->setVerified(new \DateTime());
-            //            $member->setStatus(OrganisationMembershipStatus::Accepted);
 
             $this->registry->get($member, 'app_organisation_membership')->apply($member, 'accept_membership');
 

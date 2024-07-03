@@ -27,10 +27,6 @@ final class OrganisationMembershipRegistrationSubscriber implements EventSubscri
         /** @var OrganisationMembershipInterface $member */
         $member = $event->getSubject();
 
-        if (null !== $member->getCustomer()) {
-            return;
-        }
-
         $this->registry->get($member, 'app_organisation_membership')->apply($member, 'request_verification');
     }
 }

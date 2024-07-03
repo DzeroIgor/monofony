@@ -24,3 +24,9 @@ app_frontend_join_organisation:
     methods: [ GET|POST ]
     defaults:
         _controller: App\Controller\JoinOrganisationAction
+
+app_frontend_denied_organisation:
+    path: /organisation/denied/{token}
+    methods: [ GET|POST ]
+    defaults:
+        _controller: App\Controller\DeniedOrganisationAction

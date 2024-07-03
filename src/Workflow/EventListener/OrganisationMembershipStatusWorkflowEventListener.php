@@ -20,16 +20,30 @@ class OrganisationMembershipStatusWorkflowEventListener implements EventSubscrib
         $token = $this->tokenGenerator->generate();
         $member->setEmailVerificationToken($token);
 
-        $email = (new TemplatedEmail())
-            ->from('support@example.com')
-            ->to($member->getEmail())
-            ->subject('New Organisation Membership Request!')
-            ->htmlTemplate('emails/signup.html.twig')
-            ->context([
-                'emailVerificationToken' => $token,
-                'member' => $member,
-            ])
-        ;
+        if (null !== $member->getCustomer()) {
+            $email = (new TemplatedEmail())
+                ->from('support@example.com')
+                ->to($member->getEmail())
+                ->subject('New Organisation Membership Request!')
+                ->htmlTemplate('emails/accept_membership.html.twig')
+                ->context([
+                    'emailVerificationToken' => $token,
+                    'member' => $member,
+                ])
+            ;
+        } else {
+            $email = (new TemplatedEmail())
+                ->from('support@example.com')
+                ->to($member->getEmail())
+                ->subject('New Organisation Membership Request!')
+                ->htmlTemplate('emails/signup.html.twig')
+                ->context([
+                    'emailVerificationToken' => $token,
+                    'member' => $member,
+                ])
+            ;
+        }
+
 
         $this->mailer->send($email);
     }

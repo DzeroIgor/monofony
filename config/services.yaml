@@ -16,6 +16,8 @@ services:
             #$syliusResources: '%sylius.resources%' # for api
             $environment: '%kernel.environment%'
 
+    Sylius\Bundle\ResourceBundle\Controller\StateMachineInterface: '@sylius.resource_controller.state_machine'
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:

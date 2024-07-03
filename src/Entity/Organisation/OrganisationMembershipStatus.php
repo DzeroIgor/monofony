@@ -6,9 +6,9 @@ namespace App\Entity\Organisation;
 
 enum OrganisationMembershipStatus: string
 {
-    case New = 'New';
-    case Pending = 'Pending';
-    case Accepted = 'Accepted';
-    case Denied = 'Denied';
-    case Deleted = 'Deleted';
+    case new = 'new';
+    case pending = 'pending';
+    case accepted = 'accepted';
+    case denied = 'denied';
+    case deleted = 'deleted';
 }

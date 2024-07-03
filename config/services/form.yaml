@@ -10,6 +10,9 @@ services:
     App\Form\Extension\:
         resource: '../../src/Form/Extension'
 
+    App\Form\Type\:
+        resource: '../../src/Form/Type'
+
     # ORGANISATION FORMS #
     App\Form\Type\Organisation\OrganisationType:
         arguments:

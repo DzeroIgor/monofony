@@ -38,7 +38,6 @@ framework:
                 - awaiting_changes
                 - accepted
                 - rejected
-                # list of all possible transitions:
             transitions:
                 create:
                     from: [ new ]
@@ -52,3 +51,31 @@ framework:
                 approve:
                     from: [ pending_review, rejected ]
                     to: accepted
+
+        app_organisation_membership:
+            type: 'state_machine'
+            marking_store:
+                type: 'method'
+                property: 'stateAsString'
+            supports:
+                - App\Entity\Organisation\OrganisationMembership
+            initial_marking: new
+            places:
+                - new
+                - pending
+                - accepted
+                - denied
+                - deleted
+            transitions:
+                request_verification:
+                    from: new
+                    to: pending
+                accept_membership:
+                    from: pending
+                    to: accepted
+                deny_membership:
+                    from: pending
+                    to: denied
+                delete_membership:
+                    from: [ new, pending, accepted, denied ]
+                    to: deleted

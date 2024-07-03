@@ -1,0 +1,8 @@
+
+{% set url = url('app_frontend_join_organisation', { 'token': emailVerificationToken}) %}
+{#<h1>Welcome, you are invited to join {{ member.organisation.name }}!</h1>#}
+
+{% autoescape %}
+    Finish your registration here <a href="{{ url|raw }}">{{ url|raw }}</a>
+{% endautoescape %}
+

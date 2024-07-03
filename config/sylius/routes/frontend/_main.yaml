@@ -1,20 +1,26 @@
 app_frontend_ajax:
-  resource: "ajax.yaml"
-  prefix: /ajax
+    resource: "ajax.yaml"
+    prefix: /ajax
 
 app_account:
-  resource: "account.yaml"
-  prefix: "account"
+    resource: "account.yaml"
+    prefix: "account"
 
 sylius_security:
-  resource: "security.yaml"
+    resource: "security.yaml"
 
 app_article:
-  resource: "article.yaml"
+    resource: "article.yaml"
 
 app_book:
-  resource: "book.yaml"
+    resource: "book.yaml"
 
 app_frontend_partial:
-  resource: "partial.yaml"
-  prefix: "/_partial"
+    resource: "partial.yaml"
+    prefix: "/_partial"
+
+app_frontend_join_organisation:
+    path: /organisation/join/{token}
+    methods: [ GET|POST ]
+    defaults:
+        _controller: App\Controller\JoinOrganisationAction

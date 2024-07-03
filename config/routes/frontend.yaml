@@ -6,3 +6,7 @@ app_frontend_homepage:
 
 app_frontend:
     resource: "../sylius/routes/frontend/_main.yaml"
+
+app_send_email:
+    path: /send-email/{message}
+    controller: App\Controller\SendEmailAction

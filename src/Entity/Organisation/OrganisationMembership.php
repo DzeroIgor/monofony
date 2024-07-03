@@ -54,7 +54,7 @@ class OrganisationMembership implements OrganisationMembershipInterface
     private ?Role $role = null;
 
     #[ORM\Column(type: 'string', enumType: OrganisationMembershipStatus::class)]
-    private ?OrganisationMembershipStatus $status = OrganisationMembershipStatus::New;
+    private ?OrganisationMembershipStatus $status = OrganisationMembershipStatus::new;
 
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $email = null;
@@ -148,5 +148,17 @@ class OrganisationMembership implements OrganisationMembershipInterface
         }
 
         return $this->email ?? '';
+    }
+
+    public function getStateAsString(): string
+    {
+        return $this->status->value;
+    }
+
+    public function setStateAsString(string $stateAsString): OrganisationMembership
+    {
+        $this->status = OrganisationMembershipStatus::from($stateAsString);
+
+        return $this;
     }
 }

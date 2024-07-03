@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Grid\Frontend\Organisation;
 
 use App\Entity\Organisation\OrganisationMembership;
+use App\Grid\Action\DeleteOrganisationAction;
+use App\Grid\Action\UpdateOrganisationAction;
+use App\Grid\Action\UpdateOrganisationMembershipAction;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
 use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
 use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
@@ -28,7 +31,7 @@ final class OrganisationMembershipGrid extends AbstractGrid implements ResourceA
     {
         $gridBuilder
             ->setRepositoryMethod('findOrganisationMembers', [
-                '$organisationId' => '$organisationId',
+                '$organisation' => "expr:service('App\\\Context\\\OrganisationContext').getOrganisation()",
             ])
             ->addField(
                 TwigField::create('enabled', '@SyliusUi\Grid\Field\enabled.html.twig')
@@ -74,22 +77,22 @@ final class OrganisationMembershipGrid extends AbstractGrid implements ResourceA
             )
             ->addActionGroup(
                 ItemActionGroup::create(
-                    UpdateAction::create([
-                        'link' => [
-                            'parameters' => [
-                                'organisationId' => '$organisationId',
-                                'id' => 'resource.id',
-                            ],
-                        ],
-                    ]),
-                    DeleteAction::create([
-                        'link' => [
-                            'parameters' => [
-                                'organisationId' => '$organisationId',
-                                'id' => 'resource.id',
-                            ],
-                        ],
-                    ]),
+//                    UpdateAction::create([
+//                        'link' => [
+//                            'parameters' => [
+//                                'organisationId' => '$organisationId',
+//                                'id' => 'resource.id',
+//                            ],
+//                        ],
+//                    ]),
+//                    DeleteAction::create([
+//                        'link' => [
+//                            'parameters' => [
+//                                'organisationId' => '$organisationId',
+//                                'id' => 'resource.id',
+//                            ],
+//                        ],
+//                    ]),
                 )
             )
         ;

@@ -4,4 +4,6 @@
     {% set path = asset('assets/backend/img/avatar.png'|imagine_filter('app_backend_admin_user_avatar_thumbnail')) %}
 {% endif %}
 
-<img style="margin-right: 10px; margin: auto;" class="ui image" src="{{ path }}">
+{#<img style="margin-right: 10px; margin: auto;" class="ui image" src="{{ path }}">#}
+
+<div class="ui image" style="background-image: url({{ path }});margin: auto; height: 90px; width: 60px;background-repeat: no-repeat; background-position: center; background-size: cover"></div>

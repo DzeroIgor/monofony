@@ -6,6 +6,7 @@ namespace App\Grid\Frontend\Organisation;
 
 use App\Entity\Organisation\Organisation;
 use App\Grid\Action\DeleteOrganisationAction;
+use App\Grid\Action\ShowMembersFrontendAction;
 use App\Grid\Action\UpdateOrganisationAction;
 use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
@@ -55,6 +56,7 @@ final class OrganisationGrid extends AbstractGrid implements ResourceAwareGridIn
             )
             ->addActionGroup(
                 ItemActionGroup::create(
+                    ShowMembersFrontendAction::create(),
                     UpdateOrganisationAction::create(),
                     DeleteOrganisationAction::create(),
                 )

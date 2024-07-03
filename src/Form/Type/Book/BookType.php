@@ -37,6 +37,7 @@ final class BookType extends AbstractResourceType
             ])
             ->add('literatureCategory', CategoryAutocompleteChoiceType::class, [
                 'label' => 'app.ui.category',
+//                'multiple' => true,
                 'placeholder' => 'Choose a category',
             ])
             ->add('isbn', TextType::class, [

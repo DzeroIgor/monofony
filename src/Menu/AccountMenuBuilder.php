@@ -46,6 +46,11 @@ final class AccountMenuBuilder implements AccountMenuBuilderInterface
             ->setLabelAttribute('icon', 'warehouse')
         ;
         $menu
+            ->addChild('organisation_membership', ['route' => 'app_frontend_organisation_membership_index'])
+            ->setLabel('app.ui.organisation_membership')
+            ->setLabelAttribute('icon', 'users')
+        ;
+        $menu
             ->addChild('project', ['route' => 'app_frontend_project_index'])
             ->setLabel('app.ui.project')
             ->setLabelAttribute('icon', 'file alternate')

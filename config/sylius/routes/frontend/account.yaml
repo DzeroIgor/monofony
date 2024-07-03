@@ -40,6 +40,9 @@ app_frontend_organisation:
     resource: "organisation.yaml"
     prefix: /organisations
 
+app_frontend_organisation_membership:
+    resource: "organisation_membership.yaml"
+
 app_frontend_project:
     resource: "project.yaml"
     prefix: /projects

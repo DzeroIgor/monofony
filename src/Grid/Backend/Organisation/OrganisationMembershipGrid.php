@@ -31,10 +31,6 @@ final class OrganisationMembershipGrid extends AbstractGrid implements ResourceA
                 '$organisationId' => '$organisationId',
             ])
             ->addField(
-                TwigField::create('enabled', '@SyliusUi\Grid\Field\enabled.html.twig')
-                    ->setLabel('app.ui.enabled')
-            )
-            ->addField(
                 TwigField::create('customer', 'backend/organisation_membership/fields/customer.html.twig')
                     ->setLabel('app.ui.customer')
             )
@@ -47,6 +43,10 @@ final class OrganisationMembershipGrid extends AbstractGrid implements ResourceA
                 StringField::create('role')
                     ->setPath('role.name')
                     ->setLabel('app.ui.role')
+            )
+            ->addField(
+                TwigField::create('enabled', '@SyliusUi\Grid\Field\enabled.html.twig')
+                    ->setLabel('app.ui.enabled')
             )
             ->addField(
                 StringField::create('status')

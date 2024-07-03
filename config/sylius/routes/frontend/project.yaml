@@ -6,13 +6,6 @@ app_frontend_project_index:
             section: frontend
             template: frontend/crud/index.html.twig
             grid: app_frontend_project
-#            vars:
-#                breadcrumb: 'app.ui.organisations'
-#                route:
-#                    parameters:
-#                        organisationId: $organisationId
-#                templates:
-#                    breadcrumb: frontend/project/index/_breadcrumb.html.twig
 
 app_frontend_project_create:
     path: /new
@@ -24,14 +17,6 @@ app_frontend_project_create:
             template: frontend/crud/create.html.twig
             redirect:
                 route: app_frontend_project_index
-                parameters: { organisationId: $organisationId }
-#            vars:
-#                breadcrumb: 'app.ui.organisations'
-#                route:
-#                    parameters:
-#                        organisationId: $organisationId
-#                templates:
-#                    breadcrumb: frontend/project/index/_breadcrumb.html.twig
             factory:
                 method: createNewWithOrganisation
                 arguments:
@@ -47,15 +32,6 @@ app_frontend_project_update:
             template: frontend/crud/update.html.twig
             redirect:
                 route: app_frontend_project_index
-                parameters: { organisationId: $organisationId }
-            vars:
-                breadcrumb: 'app.ui.organisations'
-                templates:
-                    breadcrumb: frontend/project/update/_breadcrumb.html.twig
-#                route:
-#                    parameters:
-#                        organisationId: $organisationId
-#                        id: $id
 
 app_frontend_project_delete:
     path: /{id}

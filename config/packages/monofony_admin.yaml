@@ -54,10 +54,12 @@ sylius_grid:
             frontend_task_status_transitions: "frontend/grid/action/manageTransitions.html.twig"
 #            --modify frontend action
             update_organisation: "frontend/organisation/action/update.html.twig"
+            update_organisation_membership: "frontend/organisation_membership/action/update.html.twig"
             delete_organisation: "frontend/organisation/action/delete.html.twig"
             delete_task: "frontend/task/action/delete.html.twig"
             update_task: "frontend/task/action/update.html.twig"
 #            --links
+            show_members_frontend: "frontend/organisation/action/showMembers.html.twig"
             show_members: "backend/organisation/action/showMembers.html.twig"
             show_projects: "backend/organisation/action/showProjects.html.twig"
             show_tasks: "backend/project/action/showTasks.html.twig"

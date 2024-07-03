@@ -1,5 +1,5 @@
 app_frontend_organisation_membership_index:
-    path: /
+    path: /members
     defaults:
         _controller: app.controller.organisation_membership::indexAction
         _sylius:
@@ -7,16 +7,13 @@ app_frontend_organisation_membership_index:
             template: frontend/crud/index.html.twig
             grid: app_frontend_organisation_membership
             permission: true
-#            vars:
-#                breadcrumb: 'app.ui.organisations'
-#                route:
-#                    parameters:
-#                        organisationId: $organisationId
-#                templates:
-#                    breadcrumb: frontend/organisation_membership/index/_breadcrumb.html.twig
+            vars:
+                route:
+                    parameters:
+                        organisationId: $organisationId
 
 app_frontend_organisation_membership_create:
-    path: /new
+    path: /members/new
     methods: [ GET, POST ]
     defaults:
         _controller: app.controller.organisation_membership::createAction
@@ -25,18 +22,17 @@ app_frontend_organisation_membership_create:
             template: frontend/crud/create.html.twig
             redirect:
                 route: app_frontend_organisation_membership_index
-                parameters: { organisationId: $organisationId }
-#            vars:
-#                route:
-#                    parameters:
-#                        organisationId: $organisationId
-#            factory:
-#                method: createNewWithOrganisation
-#                arguments:
-#                    - expr:service('app.repository.organisation').find($organisationId)
+            vars:
+                route:
+                    parameters:
+                        organisationId: $organisationId
+            factory:
+                method: createNewWithOrganisation
+                arguments:
+                    - expr:service('App\\\Context\\\OrganisationContext').getOrganisation()
 
 app_frontend_organisation_membership_update:
-    path: /{id}/edit
+    path: /members/{id}/edit
     methods: [ GET, PUT ]
     defaults:
         _controller: app.controller.organisation_membership::updateAction
@@ -46,22 +42,20 @@ app_frontend_organisation_membership_update:
 
             redirect:
                 route: app_frontend_organisation_membership_index
-                parameters: { organisationId: $organisationId }
             vars:
-                breadcrumb: 'app.ui.organisations'
-                templates:
-                    breadcrumb: frontend/organisation_membership/update/_breadcrumb.html.twig
                 route:
                     parameters:
-                        organisationId: $organisationId
                         id: $id
 
 app_frontend_organisation_membership_delete:
-    path: /{id}
+    path: /members/{id}
     methods: [DELETE]
     defaults:
         _controller: app.controller.organisation_membership::deleteAction
         _sylius:
             section: frontend
-            redirect: referer
-            permission: true
+            redirect:
+                route: app_frontend_organisation_membership_index
+                parameters:
+                    organisationId: $organisationId
+                    id: $id

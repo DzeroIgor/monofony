@@ -1,8 +1,10 @@
 
 {% set url = url('app_frontend_join_organisation', { 'token': emailVerificationToken}) %}
-{#<h1>Welcome, you are invited to join {{ member.organisation.name }}!</h1>#}
+{% set url_denied = url('app_frontend_denied_organisation', { 'token': emailVerificationToken}) %}
 
 {% autoescape %}
     Finish your registration here <a href="{{ url|raw }}">{{ url|raw }}</a>
+    <br>
+    Denied this invitation by accessing this <a href="{{ url_denied|raw }}">link</a>
 {% endautoescape %}
 
